@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SwinSchool.DAL.Entities.MyUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<ul>
+    @foreach (var myUser in Model)
+    {
+        <li>
+            @myUser.Name - (@myUser.UserID)
+        </li>
+    }
+</ul>
