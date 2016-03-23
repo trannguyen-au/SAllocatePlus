@@ -1,6 +1,8 @@
-﻿using SwinSchool.Services;
+﻿using SwinSchool.CommonShared.Dto;
+using SwinSchool.Services;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -9,22 +11,17 @@ namespace SwinSchool.WebUI.ApiControllers
 {
     public class CommonController : ApiController
     {
-        private MyUserService service;
+        private MyUserService _service = new MyUserService(ConfigurationManager.ConnectionStrings["SchoolContext"].ConnectionString);
 
         public CommonController()
         {
             
         }
 
-        public CommonController(ISchoolContext context)
-        {
-            _context = context;
-        }
-
         [HttpGet]
-        public IEnumerable<MyUser> GetAllUsers()
+        public IEnumerable<MyUserDto> GetAllUsers()
         {
-            return _context.MyUsers.ToList();
+            return _service.GetAllUsers();
         }
     }
 }

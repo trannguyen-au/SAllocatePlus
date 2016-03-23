@@ -15,11 +15,12 @@ namespace SwinSchool.Services
             _isInitialized = true;
         }
 
-        public static T Map<T>(object input)
+        public static T Map<T,T2>(T2 input) where T2: class 
+                                            where T : class
         {
             if (!_isInitialized)
                 Initialize();
-            return AutoMapper.Mapper.Map<T>(input);
+            return AutoMapper.Mapper.Map<T2, T>(input);
         }
     }
 }

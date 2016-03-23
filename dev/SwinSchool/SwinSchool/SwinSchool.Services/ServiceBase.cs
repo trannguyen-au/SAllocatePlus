@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SwinSchool.Services
 {
-    public interface IService
+    public abstract class ServiceBase
     {
+
     }
 }

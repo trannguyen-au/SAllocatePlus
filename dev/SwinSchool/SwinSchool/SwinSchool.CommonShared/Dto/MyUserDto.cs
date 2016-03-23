@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SwinSchool.CommonShared.Dto
 {
+    [Serializable]
     public class MyUserDto
     {
         public string UserID { get; set; }

@@ -14,8 +14,6 @@ namespace SwinSchool.Services.Mappers
         {
             AutoMapper.Mapper.CreateMap<MyUser, MyUserDto>();
             AutoMapper.Mapper.CreateMap<MyUserDto, MyUser>();
-            AutoMapper.Mapper.CreateMap<IEnumerable<MyUser>, IEnumerable<MyUserDto>>();
-            AutoMapper.Mapper.CreateMap<IEnumerable<MyUserDto>, IEnumerable<MyUser>>();
         }
     }
 }
