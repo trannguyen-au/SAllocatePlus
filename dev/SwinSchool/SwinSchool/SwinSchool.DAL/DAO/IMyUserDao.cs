@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SwinSchool.DAL.DAO
 {
+    /// <summary>
+    /// Interface for MyUser DAO
+    /// </summary>
     public interface IMyUserDao
     {
         List<MyUser> GetAll();

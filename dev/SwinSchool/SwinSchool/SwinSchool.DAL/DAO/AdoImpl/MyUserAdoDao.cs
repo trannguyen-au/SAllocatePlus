@@ -7,6 +7,9 @@ using System.Data.SqlClient;
 
 namespace SwinSchool.DAL.DAO.AdoImpl
 {
+    /// <summary>
+    /// Implementation of IMyUserDao using ADO.Net
+    /// </summary>
     public class MyUserAdoDao : IMyUserDao
     {
         DaoConnection _daoConn;

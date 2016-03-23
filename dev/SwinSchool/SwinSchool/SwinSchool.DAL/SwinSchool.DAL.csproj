@@ -60,7 +60,6 @@
     <Compile Include="SchoolInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Entities\SwinSchoolEntities.cd" />
   </ItemGroup>

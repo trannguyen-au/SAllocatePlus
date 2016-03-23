@@ -14,11 +14,18 @@ namespace SwinSchool.Services
     {
         private IMyUserDao _myUserDao;
 
+        /// <summary>
+        /// Construct service using EF as DAL layer, It required to have a connection string configuration named: "SchoolContext" setup
+        /// </summary>
         public MyUserService()
         {
             _myUserDao = new MyUserDao();
         }
 
+        /// <summary>
+        /// Construct service Using ADO.NET as DAL layer
+        /// </summary>
+        /// <param name="connectionString">ADO required to passin a connection string</param>
         public MyUserService(string connectionString)
         {
             _myUserDao = new MyUserAdoDao(connectionString);

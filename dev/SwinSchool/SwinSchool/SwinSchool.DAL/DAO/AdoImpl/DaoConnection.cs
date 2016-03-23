@@ -7,6 +7,10 @@ using System.Text;
 
 namespace SwinSchool.DAL.DAO.AdoImpl
 {
+    /// <summary>
+    /// ADO.NET required to manage our own database connection. 
+    /// This class provides a set of functions to interact with Database Layer (Sql Server DBMS)
+    /// </summary>
     public class DaoConnection
     {
         private SqlConnection _conn;

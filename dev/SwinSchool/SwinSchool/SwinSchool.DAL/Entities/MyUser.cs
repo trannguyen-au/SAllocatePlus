@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SwinSchool.DAL.Entities
 {
+    /// <summary>
+    /// CodeFirst EF: MyUser model
+    /// </summary>
     public class MyUser
     {
         [Key]

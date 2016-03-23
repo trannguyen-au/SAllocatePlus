@@ -1,4 +1,5 @@
 ﻿using SwinSchool.CommonShared.Dto;
+using SwinSchool.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,8 +11,11 @@ namespace SwinSchool.WebUI.Controllers
 {
     public class UserController : Controller
     {
+        // using entity framework DAO
         //Services.MyUserService _myUserService = new Services.MyUserService();
-        Services.MyUserService _myUserService = new Services.MyUserService(ConfigurationManager.ConnectionStrings["SchoolContext"].ConnectionString);
+
+        // Dao using ADO.Net
+        MyUserService _myUserService = new MyUserService(ConfigurationManager.ConnectionStrings["SchoolContext"].ConnectionString);
         //
         // GET: /User/
 
@@ -57,16 +61,23 @@ namespace SwinSchool.WebUI.Controllers
         // POST: /User/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(MyUserDto myUser)
+        public ActionResult Edit(MyUserDto myUser, FormCollection collection)
         {
             try
             {
-                _myUserService.UpdateUser(myUser);
+                if(collection["hfAction"]=="Save")
+                {
+                    _myUserService.UpdateUser(myUser);
+                }   
+                else if (collection["hfAction"] == "Delete")
+                {
+                    _myUserService.DeleteUser(myUser);
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                return View(myUser);
             }
         }
 
@@ -79,10 +90,9 @@ namespace SwinSchool.WebUI.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SwinSchool.DAL.DAO.Impl
 {
+    /// <summary>
+    /// Implementation of IMyUserDao using EF
+    /// </summary>
     public class MyUserDao : IMyUserDao
     {
         private SchoolContext _context;
