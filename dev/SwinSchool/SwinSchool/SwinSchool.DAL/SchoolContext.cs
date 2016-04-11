@@ -12,9 +12,7 @@ namespace SwinSchool.DAL
     {
         public SchoolContext()
             : base("SchoolContext")
-        {
-            
-        }
+        {}
 
         public DbSet<MyUser> MyUsers { get; set; }
 

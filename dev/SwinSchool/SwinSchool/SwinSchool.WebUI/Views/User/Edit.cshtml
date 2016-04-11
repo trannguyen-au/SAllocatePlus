@@ -32,8 +32,12 @@
                 @Html.LabelFor(model => model.Password, new { @class = "control-label col-xs-3" })
 
                 <div class="col-xs-9">
-                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password)
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                        <span class="input-group-btn">
+                            @Html.ActionLink("Reset password", "ResetPassword", new { id = Model.UserID }, new { @class = "btn btn-default" })
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -81,6 +85,7 @@
                     <input type="hidden" name="hfAction" id="hfAction" value="Save" />
                     <input type="submit" value="Save" class="btn btn-primary" />
                     <button type="button" id="btnDelete" value="Delete" class="btn btn-danger">Delete</button>
+                    
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
                 </div>
             </div>

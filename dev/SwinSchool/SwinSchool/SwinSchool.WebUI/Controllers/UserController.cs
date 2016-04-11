@@ -1,29 +1,31 @@
 ﻿using SwinSchool.CommonShared.Dto;
-using SwinSchool.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.ServiceModel;
+using SwinSchool.WebUI.Service;
+using SwinSchool.WebUI.Models;
 
 namespace SwinSchool.WebUI.Controllers
 {
     public class UserController : Controller
     {
-        // using entity framework DAO
-        //Services.MyUserService _myUserService = new Services.MyUserService();
+        MyUserBOClient _myUserService = new MyUserBOClient("BasicHttpBinding_IMyUserBO");
 
-        // Dao using ADO.Net
-        MyUserService _myUserService = new MyUserService(ConfigurationManager.ConnectionStrings["SchoolContext"].ConnectionString);
         //
         // GET: /User/
 
         public ActionResult Index()
         {
-            return View(_myUserService.GetAllUsers());
-        }
+            List<MyUserDto> allUserList = new List<MyUserDto>();
+            allUserList = new List<MyUserDto>(_myUserService.GetAllUsers());
 
+            return View(allUserList);
+        }
+        
         //
         // GET: /User/Create
 
@@ -71,7 +73,7 @@ namespace SwinSchool.WebUI.Controllers
                 }   
                 else if (collection["hfAction"] == "Delete")
                 {
-                    _myUserService.DeleteUser(myUser);
+                    _myUserService.DeleteUser(myUser.UserID);
                 }
                 return RedirectToAction("Index");
             }
@@ -96,6 +98,51 @@ namespace SwinSchool.WebUI.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ResetPassword(string id)
+        {
+            var user = _myUserService.GetUserById(id);
+
+            ResetPasswordRequestViewModel vm = new ResetPasswordRequestViewModel()
+            {
+                Name = user.Name,
+                SecQn = user.SecQn,
+                UserID = user.UserID
+            };
+            
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordRequestViewModel resetPasswordModel)
+        {
+            if(!ModelState.IsValid)
+                return View(resetPasswordModel);
+
+            try
+            {
+                var resetPasswordDto = new ResetPasswordRequestDto()
+                {
+                    SecAns = resetPasswordModel.SecAns,
+                    UserId = resetPasswordModel.UserID
+                };
+
+                _myUserService.ResetPassword(resetPasswordDto);
+                return RedirectToAction("ResetPasswordSuccess");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("SecAns", ex);
+
+                return View(resetPasswordModel);
+            }
+
+        }
+
+        public ActionResult ResetPasswordSuccess()
+        {
+            return View();
         }
     }
 }

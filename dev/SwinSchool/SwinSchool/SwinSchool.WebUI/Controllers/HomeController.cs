@@ -10,9 +10,7 @@ namespace SwinSchool.WebUI.Controllers
     {
         public ActionResult Index()
         {
-            Services.MyUserService service = new Services.MyUserService();
-            
-            return View(service.GetAllUsers());
+            return View();
         }
 
     }
