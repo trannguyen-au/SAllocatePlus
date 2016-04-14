@@ -26,7 +26,7 @@ namespace SwinSchool.WebUI.Service
         void DeleteUser(string userId);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/ResetPassword", ReplyAction = "http://tempuri.org/IMyUserBO/ResetPasswordResponse")]
-        void ResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
+        string[] ResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -88,9 +88,9 @@ namespace SwinSchool.WebUI.Service
             base.Channel.DeleteUser(userId);
         }
 
-        public void ResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
+        public string[] ResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
         {
-            base.Channel.ResetPassword(resetPasswordRequest);
+            return base.Channel.ResetPassword(resetPasswordRequest);
         }
     }
 

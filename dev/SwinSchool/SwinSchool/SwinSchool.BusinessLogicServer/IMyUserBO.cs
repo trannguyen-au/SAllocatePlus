@@ -25,6 +25,6 @@ namespace SwinSchool.BusinessLogicServer
         void DeleteUser(string userId);
 
         [OperationContract]
-        void ResetPassword(ResetPasswordRequestDto resetPasswordRequest);
+        List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest);
     }
 }

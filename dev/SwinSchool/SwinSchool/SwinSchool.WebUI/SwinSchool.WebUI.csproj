@@ -139,7 +139,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllers\CommonController.cs" />
+    <Compile Include="ApiControllers\UserApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\JsonResponseMessage.cs" />
     <Compile Include="Models\ResetPasswordRequestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\MyUserBOClient.cs" />
@@ -206,6 +207,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\LocalIIS.pubxml" />
+    <Content Include="Scripts\angular\angular-csp.css" />
+    <Content Include="Scripts\angular\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />

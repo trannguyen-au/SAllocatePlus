@@ -13,8 +13,6 @@ using SwinSchool.CommonShared;
 
 namespace SwinSchool.BusinessLogicServer
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class MyUserBO : IMyUserBO
     {
         private IMyUserDao _myUserDao;
@@ -63,25 +61,36 @@ namespace SwinSchool.BusinessLogicServer
             return null;
         }
 
-        public void ResetPassword(ResetPasswordRequestDto resetPasswordRequest)
+        public List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest)
         {
+            List<string> errors = new List<string>();
             // Reset password validation:
             var user = _myUserDao.GetById(resetPasswordRequest.UserId);
             if (user == null)
-                throw new Exception("User is not found");
+                errors.Add("User is not found");
 
             if (!user.SecAns.Equals(resetPasswordRequest.SecAns))
-                throw new Exception("Your security answer is invalid");
+                errors.Add("Your security answer is invalid");
+
+            // validation failed, return
+            if (errors.Count > 0)
+            {
+                return errors;
+            }
+
 
             // Perform generating new password.
             user.Password = RandomManager.GenerateRandomString(8);
 
+            
             // save updated entity to the database
             if (_myUserDao.Update(user) > 0)
             {
                 // log the updated password into a server log file
                 AppLogger.Info(string.Format("Password has been updated for user : {0} to : {1}", user.Name, user.Password));
             }
+
+            return errors;
         }
 
         public void UpdateUser(MyUserDto userDto)
