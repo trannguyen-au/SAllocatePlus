@@ -15,6 +15,7 @@ namespace SwinSchool.DAL
         {}
 
         public DbSet<MyUser> MyUsers { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

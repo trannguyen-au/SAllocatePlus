@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinSchool.WebUI", "SwinSchool.WebUI\SwinSchool.WebUI.csproj", "{49B2D766-DBF8-415C-A74C-363BDD2C669F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2C076B91-E450-4027-A96B-B31E680BE677} = {2C076B91-E450-4027-A96B-B31E680BE677}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwinSchool.DAL", "SwinSchool.DAL\SwinSchool.DAL.csproj", "{9B3276C5-599E-4A74-8EDA-19920BCAD46D}"
 EndProject

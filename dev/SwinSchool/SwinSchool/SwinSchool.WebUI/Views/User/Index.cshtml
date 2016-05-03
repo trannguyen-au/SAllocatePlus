@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>User list</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New User", "Create") | 
+    @Html.ActionLink("Cart", "Index", "Cart")
 </p>
 <table class="table table-responsive">
     <tr>

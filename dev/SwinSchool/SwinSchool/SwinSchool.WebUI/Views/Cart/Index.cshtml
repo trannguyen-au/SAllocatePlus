@@ -1,0 +1,13 @@
+﻿@model SwinSchool.WebUI.Models.ProductListViewModel
+
+@{
+    ViewBag.Title = "Available Products";
+}
+
+<h2>Product list</h2>
+
+<p>
+    @Html.ActionLink("View cart", "View") (Total items: @Model.TotalCartQty - @(Model.CartTotal.ToString("C")) )
+</p>
+
+@Html.Partial("ProductListPartial", Model.ProductList)

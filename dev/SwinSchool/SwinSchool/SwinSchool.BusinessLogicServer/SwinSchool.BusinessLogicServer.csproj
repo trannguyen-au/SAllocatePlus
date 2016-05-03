@@ -90,9 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyUserBO.svc" />
+    <Content Include="ShopCartBO.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IShopCartBO.cs" />
     <Compile Include="Mappers\MapperConfig.cs" />
     <Compile Include="Mappers\Mapping.cs" />
     <Compile Include="MyUserBO.svc.cs">
@@ -100,6 +102,9 @@
     </Compile>
     <Compile Include="IMyUserBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopCartBO.svc.cs">
+      <DependentUpon>ShopCartBO.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
