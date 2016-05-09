@@ -9,13 +9,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderQuantity)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubTotal)
         </th>
         <th></th>
     </tr>
@@ -30,13 +24,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderQuantity)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubTotal)
             </td>
             <td>
                 @Html.ActionLink("Add to cart", "Add", new { id = item.ProductID })

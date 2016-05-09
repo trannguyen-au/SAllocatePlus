@@ -9,29 +9,29 @@
 //------------------------------------------------------------------------------
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IShopCartBO")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName = "IShopCartBO")]
 public interface IShopCartBO
 {
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/AddProduct", ReplyAction="http://tempuri.org/IShopCartBO/AddProductResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/AddProduct", ReplyAction = "http://tempuri.org/IShopCartBO/AddProductResponse")]
     void AddProduct(SwinSchool.CommonShared.Dto.ProductDto product);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/ChangeQuantity", ReplyAction="http://tempuri.org/IShopCartBO/ChangeQuantityResponse")]
-    void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto product, int quantity);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/RemoveProduct", ReplyAction="http://tempuri.org/IShopCartBO/RemoveProductResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/ChangeQuantity", ReplyAction = "http://tempuri.org/IShopCartBO/ChangeQuantityResponse")]
+    void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto[] updatedCart);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/RemoveProduct", ReplyAction = "http://tempuri.org/IShopCartBO/RemoveProductResponse")]
     void RemoveProduct(SwinSchool.CommonShared.Dto.ProductDto product);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/GetCart", ReplyAction="http://tempuri.org/IShopCartBO/GetCartResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/GetCart", ReplyAction = "http://tempuri.org/IShopCartBO/GetCartResponse")]
     SwinSchool.CommonShared.Dto.ProductDto[] GetCart();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/GetAvailableProducts", ReplyAction="http://tempuri.org/IShopCartBO/GetAvailableProductsResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/GetAvailableProducts", ReplyAction = "http://tempuri.org/IShopCartBO/GetAvailableProductsResponse")]
     SwinSchool.CommonShared.Dto.ProductDto[] GetAvailableProducts();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/GetTotalCart", ReplyAction="http://tempuri.org/IShopCartBO/GetTotalCartResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/GetTotalCart", ReplyAction = "http://tempuri.org/IShopCartBO/GetTotalCartResponse")]
     decimal GetTotalCart();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/CheckOut", ReplyAction="http://tempuri.org/IShopCartBO/CheckOutResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IShopCartBO/CheckOut", ReplyAction = "http://tempuri.org/IShopCartBO/CheckOutResponse")]
     void CheckOut();
 }
 
@@ -44,61 +44,61 @@ public interface IShopCartBOChannel : IShopCartBO, System.ServiceModel.IClientCh
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public partial class ShopCartBOClient : System.ServiceModel.ClientBase<IShopCartBO>, IShopCartBO
 {
-    
+
     public ShopCartBOClient()
     {
     }
-    
-    public ShopCartBOClient(string endpointConfigurationName) : 
-            base(endpointConfigurationName)
+
+    public ShopCartBOClient(string endpointConfigurationName) :
+        base(endpointConfigurationName)
     {
     }
-    
-    public ShopCartBOClient(string endpointConfigurationName, string remoteAddress) : 
-            base(endpointConfigurationName, remoteAddress)
+
+    public ShopCartBOClient(string endpointConfigurationName, string remoteAddress) :
+        base(endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public ShopCartBOClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-            base(endpointConfigurationName, remoteAddress)
+
+    public ShopCartBOClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+        base(endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public ShopCartBOClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-            base(binding, remoteAddress)
+
+    public ShopCartBOClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+        base(binding, remoteAddress)
     {
     }
-    
+
     public void AddProduct(SwinSchool.CommonShared.Dto.ProductDto product)
     {
         base.Channel.AddProduct(product);
     }
-    
-    public void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto product, int quantity)
+
+    public void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto[] updatedCart)
     {
-        base.Channel.ChangeQuantity(product, quantity);
+        base.Channel.ChangeQuantity(updatedCart);
     }
-    
+
     public void RemoveProduct(SwinSchool.CommonShared.Dto.ProductDto product)
     {
         base.Channel.RemoveProduct(product);
     }
-    
+
     public SwinSchool.CommonShared.Dto.ProductDto[] GetCart()
     {
         return base.Channel.GetCart();
     }
-    
+
     public SwinSchool.CommonShared.Dto.ProductDto[] GetAvailableProducts()
     {
         return base.Channel.GetAvailableProducts();
     }
-    
+
     public decimal GetTotalCart()
     {
         return base.Channel.GetTotalCart();
     }
-    
+
     public void CheckOut()
     {
         base.Channel.CheckOut();

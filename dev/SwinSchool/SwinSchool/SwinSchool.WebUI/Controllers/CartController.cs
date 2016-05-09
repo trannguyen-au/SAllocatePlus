@@ -36,5 +36,43 @@ namespace SwinSchool.WebUI.Controllers
             var a = _shopCartService.GetTotalCart();
             return RedirectToAction("Index");
         }
+        public ActionResult View()
+        {
+            var vm = new CartViewModel();
+            vm.ProductList= _shopCartService.GetCart().ToList();
+            vm.CartTotal = _shopCartService.GetTotalCart();
+
+            if (Request.QueryString["UpdateSuccess"] != null)
+            {
+                vm.Message = "Cart updated successfully";
+            }
+
+            return View(vm);
+        }
+        
+        [HttpPost]
+        public ActionResult UpdateCart(List<ProductDto> item, string action)
+        {   
+            if (item == null) {
+                return RedirectToAction("View");
+            }
+            if (action == "Update Cart")
+            {
+                _shopCartService.ChangeQuantity(item.ToArray());
+
+                return RedirectToAction("View", new { UpdateSuccess = true });
+            }
+            else if (action == "Checkout")
+            {
+                _shopCartService.CheckOut();
+                return RedirectToAction("CheckoutSuccess");
+            }
+            return RedirectToAction("View");
+        }
+
+        public ActionResult CheckoutSuccess()
+        {
+            return View();
+        }
     }
 }

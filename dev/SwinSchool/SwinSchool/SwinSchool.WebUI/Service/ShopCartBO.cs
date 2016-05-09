@@ -105,7 +105,7 @@ public interface IShopCartBO
     void AddProduct(SwinSchool.CommonShared.Dto.ProductDto product);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/ChangeQuantity", ReplyAction="http://tempuri.org/IShopCartBO/ChangeQuantityResponse")]
-    void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto product, int quantity);
+    void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto[] updatedCart);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartBO/RemoveProduct", ReplyAction="http://tempuri.org/IShopCartBO/RemoveProductResponse")]
     void RemoveProduct(SwinSchool.CommonShared.Dto.ProductDto product);
@@ -162,9 +162,9 @@ public partial class ShopCartBOClient : System.ServiceModel.ClientBase<IShopCart
         base.Channel.AddProduct(product);
     }
     
-    public void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto product, int quantity)
+    public void ChangeQuantity(SwinSchool.CommonShared.Dto.ProductDto[] updatedCart)
     {
-        base.Channel.ChangeQuantity(product, quantity);
+        base.Channel.ChangeQuantity(updatedCart);
     }
     
     public void RemoveProduct(SwinSchool.CommonShared.Dto.ProductDto product)

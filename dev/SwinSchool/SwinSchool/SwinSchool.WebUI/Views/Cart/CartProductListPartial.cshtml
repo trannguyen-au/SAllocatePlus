@@ -1,0 +1,61 @@
+﻿@model IList<SwinSchool.CommonShared.Dto.ProductDto>
+
+@using (Html.BeginForm("UpdateCart", "Cart", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <input type="submit" value="Update Cart" class="btn btn-primary" name="action" />
+    <input type="submit" value="Checkout" class="btn btn-primary" name="action" />
+
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                Product ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Order Quantity
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Sub Total
+            </th>
+            <th></th>
+        </tr>
+
+        @for (var i=0;i<Model.Count(); i++)
+        {
+            var item = Model[i];
+            
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                    <input type="hidden" name="item[@i].ProductID" value="@item.ProductID" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <input value="@item.OrderQuantity" type="text" id="OrderQuantity" name="item[@i].OrderQuantity" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "Add", new { id = item.ProductID })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+}

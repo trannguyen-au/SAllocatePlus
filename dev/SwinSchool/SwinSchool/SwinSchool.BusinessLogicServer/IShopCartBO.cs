@@ -16,7 +16,7 @@ namespace SwinSchool.BusinessLogicServer
 		[OperationContract]
 		void AddProduct(ProductDto product);
         [OperationContract]
-        void ChangeQuantity(ProductDto product, int quantity);
+        void ChangeQuantity(ProductDto[] updatedCart);
         [OperationContract]
         void RemoveProduct(ProductDto product);
         [OperationContract]

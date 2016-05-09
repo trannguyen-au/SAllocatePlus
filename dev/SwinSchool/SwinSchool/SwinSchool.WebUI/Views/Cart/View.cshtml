@@ -1,0 +1,18 @@
+﻿@model SwinSchool.WebUI.Models.CartViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Cart detail</h2>
+
+<p>
+    @Html.ActionLink("Browse products", "Index") (Total cart: @(Model.CartTotal.ToString("C")) )
+</p>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+@Html.Partial("CartProductListPartial", Model.ProductList)

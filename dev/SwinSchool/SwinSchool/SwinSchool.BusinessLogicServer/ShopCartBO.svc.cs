@@ -47,16 +47,19 @@ namespace SwinSchool.BusinessLogicServer
             }
         }
 
-        public void ChangeQuantity(CommonShared.Dto.ProductDto product, int quantity)
+        public void ChangeQuantity(CommonShared.Dto.ProductDto[] updatedCart)
         {
-            var productInCart = _cart.FirstOrDefault(p => p.ProductID == product.ProductID);
-            if (productInCart == null)
-                throw new Exception("Product is not exist in cart");
+            foreach (var product in updatedCart)
+            {
+                var productInCart = _cart.FirstOrDefault(p => p.ProductID == product.ProductID);
+                if (productInCart == null)
+                    throw new Exception("Product is not exist in cart");
 
-            if (quantity <= 0)
-                throw new Exception("Quantity cannot be less than 1");
+                if (product.OrderQuantity <= 0)
+                    throw new Exception("Quantity cannot be less than 1");
 
-            productInCart.OrderQuantity = quantity;
+                productInCart.OrderQuantity = product.OrderQuantity;
+            }
         }
 
         public void RemoveProduct(CommonShared.Dto.ProductDto product)

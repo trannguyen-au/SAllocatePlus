@@ -149,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\JsonResponseMessage.cs" />
     <Compile Include="Scripts\ProductListViewModel.cs" />
     <Compile Include="Models\ResetPasswordRequestViewModel.cs" />
@@ -252,6 +253,9 @@
     <Content Include="Views\User\ResetPasswordSuccess.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\ProductListPartial.cshtml" />
+    <Content Include="Views\Cart\View.cshtml" />
+    <Content Include="Views\Cart\CartProductListPartial.cshtml" />
+    <Content Include="Views\Cart\CheckoutSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiControllers\" />
