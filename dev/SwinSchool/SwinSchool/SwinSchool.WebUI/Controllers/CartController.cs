@@ -10,8 +10,25 @@ namespace SwinSchool.WebUI.Controllers
 {
     public class CartController : Controller
     {
+        /// <summary>
+        /// Because MVC Controller is stateless, therefore to achieve a stateful BO behaviour 
+        /// of the Business Logic Server, the handle or object referencing of the BO object 
+        /// have to be maintained over the whole User session. In order to achieve this, we use
+        /// the Web Session to store the handle of BO for each user session.
+        /// </summary>
+ 
+        ShopCartBOClient _shopCartService
+        {
+            get
+            {
+                if (Session["cartBoHandle"] == null)
+                {
+                    Session["cartBoHandle"] = new ShopCartBOClient("wsHttpBinding_IShopCartBO");
+                }
 
-        static ShopCartBOClient _shopCartService = new ShopCartBOClient("wsHttpBinding_IShopCartBO");
+                return (ShopCartBOClient)Session["cartBoHandle"];
+            }
+        }
 
         //
         // GET: /Cart/
@@ -39,7 +56,7 @@ namespace SwinSchool.WebUI.Controllers
         public ActionResult View()
         {
             var vm = new CartViewModel();
-            vm.ProductList= _shopCartService.GetCart().ToList();
+            vm.ProductList = _shopCartService.GetCart().ToList();
             vm.CartTotal = _shopCartService.GetTotalCart();
 
             if (Request.QueryString["UpdateSuccess"] != null)
@@ -49,11 +66,12 @@ namespace SwinSchool.WebUI.Controllers
 
             return View(vm);
         }
-        
+
         [HttpPost]
         public ActionResult UpdateCart(List<ProductDto> item, string action)
-        {   
-            if (item == null) {
+        {
+            if (item == null)
+            {
                 return RedirectToAction("View");
             }
             if (action == "Update Cart")

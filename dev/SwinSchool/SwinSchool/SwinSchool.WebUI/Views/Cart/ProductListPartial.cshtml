@@ -27,7 +27,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Add to cart", "Add", new { id = item.ProductID })
+                @Html.ActionLink("Add to cart", "Add", new { id = item.ProductID }, new { @class="btn btn-info"})
             </td>
         </tr>
     }

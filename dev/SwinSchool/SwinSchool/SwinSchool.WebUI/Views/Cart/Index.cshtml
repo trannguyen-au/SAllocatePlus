@@ -7,7 +7,9 @@
 <h2>Product list</h2>
 
 <p>
-    @Html.ActionLink("View cart", "View") (Total items: @Model.TotalCartQty - @(Model.CartTotal.ToString("C")) )
+    @Html.ActionLink("View cart", "View",null, new {
+    @class = "btn btn-primary"
+    }) (Total items: @Model.TotalCartQty - @(Model.CartTotal.ToString("C")) )
 </p>
 
 @Html.Partial("ProductListPartial", Model.ProductList)
