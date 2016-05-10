@@ -11,10 +11,11 @@ namespace SwinSchool.WebUI.Controllers
     public class CartController : Controller
     {
         /// <summary>
-        /// Because MVC Controller is stateless, therefore to achieve a stateful BO behaviour 
-        /// of the Business Logic Server, the handle or object referencing of the BO object 
-        /// have to be maintained over the whole User session. In order to achieve this, we use
-        /// the Web Session to store the handle of BO for each user session.
+        /// Because MVC Controller is stateless, therefore to achieve a stateful BO 
+        /// behaviour of the Business Logic Server, the handle or object referencing 
+        /// of the BO object have to be maintained over the whole User session. In 
+        /// order to achieve this, we use the Web Session to store the handle of BO
+        /// for each user session in MVC Controller.
         /// </summary>
  
         ShopCartBOClient _shopCartService
