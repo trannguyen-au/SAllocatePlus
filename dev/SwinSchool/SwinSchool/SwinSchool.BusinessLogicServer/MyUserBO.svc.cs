@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data;
+using System.Data.Entity;
 using SwinSchool.CommonShared.Dto;
 using SwinSchool.DAL.DAO;
 using SwinSchool.DAL.DAO.Impl;
@@ -13,13 +15,18 @@ using SwinSchool.CommonShared;
 
 namespace SwinSchool.BusinessLogicServer
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class MyUserBO : IMyUserBO
     {
         private IMyUserDao _myUserDao;
+        private UserMaintenanceService _userService;
 
         public MyUserBO()
         {
             _myUserDao = new MyUserDao();
+
+            // initialize user service to listen to the MSMQ
+            _userService = UserMaintenanceService.Instance;
         }
 
         public void CreateUser(MyUserDto userDto)
@@ -61,7 +68,26 @@ namespace SwinSchool.BusinessLogicServer
             return null;
         }
 
+        /// <summary>
+        /// PT3.2 Implementation
+        /// </summary>
+        /// <param name="resetPasswordRequest"></param>
+        /// <returns></returns>
         public List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest)
+        {
+            List<string> errors = PrecheckForResetPassword(resetPasswordRequest);
+            
+            return errors;
+        }
+
+        public void UpdateUser(MyUserDto userDto)
+        {
+            var myUser = Mapping.Map<MyUser, MyUserDto>(userDto);
+            _myUserDao.Update(myUser);
+        }
+
+
+        public List<string> PrecheckForResetPassword(ResetPasswordRequestDto resetPasswordRequest)
         {
             List<string> errors = new List<string>();
             // Reset password validation:
@@ -72,31 +98,7 @@ namespace SwinSchool.BusinessLogicServer
             if (!user.SecAns.Equals(resetPasswordRequest.SecAns))
                 errors.Add("Your security answer is invalid");
 
-            // validation failed, return
-            if (errors.Count > 0)
-            {
-                return errors;
-            }
-
-
-            // Perform generating new password.
-            user.Password = RandomManager.GenerateRandomString(8);
-
-            
-            // save updated entity to the database
-            if (_myUserDao.Update(user) > 0)
-            {
-                // log the updated password into a server log file
-                AppLogger.Info(string.Format("Password has been updated for user : {0} to : {1}", user.Name, user.Password));
-            }
-
             return errors;
-        }
-
-        public void UpdateUser(MyUserDto userDto)
-        {
-            var myUser = Mapping.Map<MyUser, MyUserDto>(userDto);
-            _myUserDao.Update(myUser);
         }
     }
 }

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.ServiceModel.MsmqIntegration;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SwinSchool.WebUI.ApiControllers
@@ -16,9 +18,12 @@ namespace SwinSchool.WebUI.ApiControllers
     {
         MyUserBOClient _myUserService = null;
 
+        UserAccountQueueClient _myUserAccountQueueService = null;
+
         public UserApiController()
         {
-            _myUserService = new MyUserBOClient("BasicHttpBinding_IMyUserBO");
+            _myUserService = new MyUserBOClient("wsHttpBinding_IMyUserBO");
+            _myUserAccountQueueService = new UserAccountQueueClient("UserAccountEndpoint");
         }
 
         [HttpPost]
@@ -30,21 +35,31 @@ namespace SwinSchool.WebUI.ApiControllers
                 jsonMessage.Error("Invalid data", resetPasswordModel);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, jsonMessage);
             }
-            
+
             try
             {
+
+
                 var resetPasswordDto = new ResetPasswordRequestDto()
                 {
                     SecAns = resetPasswordModel.SecAns,
                     UserId = resetPasswordModel.UserID
                 };
 
-                var errors = _myUserService.ResetPassword(resetPasswordDto);
+                var errors = _myUserService.PrecheckForResetPassword(resetPasswordDto);
 
-                if(errors.Length>0)
+                if (errors.Length > 0)
                 {
                     jsonMessage.Error(string.Join("; ", errors));
                     return Request.CreateResponse(HttpStatusCode.BadRequest, jsonMessage);
+                }
+
+                // create a message to do password reset via MSMQ
+                MsmqMessage<ResetPasswordRequestDto> resetPwdMsg = new MsmqMessage<ResetPasswordRequestDto>(resetPasswordDto);
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    _myUserAccountQueueService.SendPasswordResetMessage(resetPwdMsg);
+                    scope.Complete();
                 }
 
                 jsonMessage.Success("Ok", resetPasswordModel);
@@ -52,7 +67,7 @@ namespace SwinSchool.WebUI.ApiControllers
             }
             catch (Exception ex)
             {
-                jsonMessage.Error("Server error: "+ex.Message);
+                jsonMessage.Error("Server error: " + ex.Message);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, jsonMessage);
             }
         }

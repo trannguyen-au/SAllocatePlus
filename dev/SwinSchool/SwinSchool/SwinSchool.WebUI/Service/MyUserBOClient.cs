@@ -1,12 +1,16 @@
-﻿using System;
+﻿using SwinSchool.CommonShared.Dto;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
 namespace SwinSchool.WebUI.Service
 {
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "IMyUserBO")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "IMyUserBO", SessionMode = System.ServiceModel.SessionMode.Required)]
     public interface IMyUserBO
     {
 
@@ -27,6 +31,9 @@ namespace SwinSchool.WebUI.Service
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/ResetPassword", ReplyAction = "http://tempuri.org/IMyUserBO/ResetPasswordResponse")]
         string[] ResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/PrecheckForResetPassword", ReplyAction = "http://tempuri.org/IMyUserBO/PrecheckForResetPasswordResponse")]
+        string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -44,22 +51,22 @@ namespace SwinSchool.WebUI.Service
         }
 
         public MyUserBOClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
+            base(endpointConfigurationName)
         {
         }
 
         public MyUserBOClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
+            base(endpointConfigurationName, remoteAddress)
         {
         }
 
         public MyUserBOClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
+            base(endpointConfigurationName, remoteAddress)
         {
         }
 
         public MyUserBOClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
+            base(binding, remoteAddress)
         {
         }
 
@@ -92,7 +99,11 @@ namespace SwinSchool.WebUI.Service
         {
             return base.Channel.ResetPassword(resetPasswordRequest);
         }
-    }
 
+        public string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
+        {
+            return base.Channel.PrecheckForResetPassword(resetPasswordRequest);
+        }
+    }
 
 }

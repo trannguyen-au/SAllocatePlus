@@ -9,8 +9,7 @@ using System.Text;
 
 namespace SwinSchool.BusinessLogicServer
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract(SessionMode = SessionMode.Required)]
     public interface IMyUserBO
     {
         [OperationContract]
@@ -26,5 +25,7 @@ namespace SwinSchool.BusinessLogicServer
 
         [OperationContract]
         List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest);
+        [OperationContract]
+        List<string> PrecheckForResetPassword(ResetPasswordRequestDto resetPasswordRequest);
     }
 }

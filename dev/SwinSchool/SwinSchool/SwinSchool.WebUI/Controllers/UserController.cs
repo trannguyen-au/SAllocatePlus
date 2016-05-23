@@ -8,12 +8,14 @@ using System.Web.Mvc;
 using System.ServiceModel;
 using SwinSchool.WebUI.Service;
 using SwinSchool.WebUI.Models;
+using System.ServiceModel.MsmqIntegration;
+using System.Transactions;
 
 namespace SwinSchool.WebUI.Controllers
 {
     public class UserController : Controller
     {
-        MyUserBOClient _myUserService = new MyUserBOClient("BasicHttpBinding_IMyUserBO");
+        MyUserBOClient _myUserService = new MyUserBOClient("wsHttpBinding_IMyUserBO");
 
         //
         // GET: /User/
@@ -112,32 +114,6 @@ namespace SwinSchool.WebUI.Controllers
             };
             
             return View(vm);
-        }
-
-        [HttpPost]
-        public ActionResult ResetPassword(ResetPasswordRequestViewModel resetPasswordModel)
-        {
-            if(!ModelState.IsValid)
-                return View(resetPasswordModel);
-
-            try
-            {
-                var resetPasswordDto = new ResetPasswordRequestDto()
-                {
-                    SecAns = resetPasswordModel.SecAns,
-                    UserId = resetPasswordModel.UserID
-                };
-
-                _myUserService.ResetPassword(resetPasswordDto);
-                return RedirectToAction("ResetPasswordSuccess");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("SecAns", ex);
-
-                return View(resetPasswordModel);
-            }
-
         }
 
         public ActionResult ResetPasswordSuccess()
