@@ -38,8 +38,6 @@ namespace SwinSchool.WebUI.ApiControllers
 
             try
             {
-
-
                 var resetPasswordDto = new ResetPasswordRequestDto()
                 {
                     SecAns = resetPasswordModel.SecAns,
