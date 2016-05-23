@@ -34,7 +34,7 @@ namespace SwinSchool.BusinessLogicServer
             client.UseDefaultCredentials = false;
             client.Timeout = 10000;
             client.Host = "mail.wnext.net.au";
-            client.Credentials = new NetworkCredential("contact@wnext.net.au", "Pentium4");
+            client.Credentials = new NetworkCredential("contact@wnext.net.au", "*******");
 
             mail.Subject = subject;
             mail.Body = body;
