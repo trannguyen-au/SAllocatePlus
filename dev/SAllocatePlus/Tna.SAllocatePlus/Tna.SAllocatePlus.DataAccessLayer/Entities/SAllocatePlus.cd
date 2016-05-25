@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Job">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAACAAAAAgBAAgAAAAAAQAAAEAAAIAAAgQAEAAAAAA=</HashCode>
+      <FileName>Entities\Job.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="JobSupervisor" />
+      <Property Name="JobRegion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Staff">
+    <Position X="11.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAAACAAAAAAAQAEAAAAAAAAAACiAAAAAgAAAAA=</HashCode>
+      <FileName>Entities\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.JobStaff">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAACAAAAAAAAAAAAAAAICACAEAAAAAAAEAAAAA=</HashCode>
+      <FileName>Entities\JobStaff.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Staff" />
+      <Property Name="Job" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.JobStaffAvailability">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAACACAAAAAAAAAoAAAAA=</HashCode>
+      <FileName>Entities\JobStaffAvailability.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Region">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Region.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.StaffUser">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAACAA=</HashCode>
+      <FileName>Entities\StaffUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
