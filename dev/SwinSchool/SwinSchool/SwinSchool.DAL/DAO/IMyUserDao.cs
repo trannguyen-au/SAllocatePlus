@@ -16,5 +16,7 @@ namespace SwinSchool.DAL.DAO
         int Create(MyUser myUser);
         int Update(MyUser myUser);
         int Delete(MyUser myUser);
+
+        MyUser GetByUserName(string username);
     }
 }

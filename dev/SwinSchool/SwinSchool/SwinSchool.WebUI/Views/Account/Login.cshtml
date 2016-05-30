@@ -1,0 +1,16 @@
+﻿@model SwinSchool.WebUI.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login to SECURE</h2>
+@using (Html.BeginForm())
+{   
+    @Html.TextBoxFor(model => model.UserName)
+    <br />
+    @Html.PasswordFor(model => model.Password)
+    
+    <input type="submit" value="Login" />
+}
+
+

@@ -146,6 +146,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -154,6 +155,7 @@
     </Compile>
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\JsonResponseMessage.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Scripts\ProductListViewModel.cs" />
     <Compile Include="Models\ResetPasswordRequestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +263,7 @@
     <Content Include="Views\Cart\View.cshtml" />
     <Content Include="Views\Cart\CartProductListPartial.cshtml" />
     <Content Include="Views\Cart\CheckoutSuccess.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

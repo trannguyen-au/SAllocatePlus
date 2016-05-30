@@ -1,4 +1,5 @@
-﻿using SwinSchool.DAL.Entities;
+﻿using SwinSchool.CommonShared;
+using SwinSchool.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,9 +25,23 @@ namespace SwinSchool.DAL
                         Tel = "04564353"+i.ToString("00"),
                         Password = "123456",
                         SecQn = "Favorite color?",
-                        SecAns = "Green"
+                        SecAns = "Green",
+                        Role = Constants.RoleValue.Employee
                     });
             }
+            sampleUserList.Add(
+                    new MyUser
+                    {
+                        UserID = "234561",
+                        Name = "Wery Nguyen",
+                        Email = "nguyennt86@gmail.com",
+                        Address = "32 Baker St, Marylebone, London W1U 3EY",
+                        Tel = "0456435356",
+                        Password = "123456",
+                        SecQn = "Favorite color?",
+                        SecAns = "Red",
+                        Role = Constants.RoleValue.Administrator
+                    });
 
             sampleUserList.ForEach(s => context.MyUsers.Add(s));
             context.SaveChanges();

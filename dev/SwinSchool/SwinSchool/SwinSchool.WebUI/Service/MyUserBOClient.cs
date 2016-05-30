@@ -34,6 +34,9 @@ namespace SwinSchool.WebUI.Service
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/PrecheckForResetPassword", ReplyAction = "http://tempuri.org/IMyUserBO/PrecheckForResetPasswordResponse")]
         string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/ValidateLogin", ReplyAction = "http://tempuri.org/IMyUserBO/ValidateLoginResponse")]
+        SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -104,6 +107,10 @@ namespace SwinSchool.WebUI.Service
         {
             return base.Channel.PrecheckForResetPassword(resetPasswordRequest);
         }
-    }
 
+        public SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password)
+        {
+            return base.Channel.ValidateLogin(username, password);
+        }
+    }
 }

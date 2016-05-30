@@ -27,11 +27,7 @@ namespace SwinSchool.CommonShared.Dto
         
         private string NameField;
         
-        private string PasswordField;
-        
-        private string SecAnsField;
-        
-        private string SecQnField;
+        private string RoleField;
         
         private string TelField;
         
@@ -89,41 +85,15 @@ namespace SwinSchool.CommonShared.Dto
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password
+        public string Role
         {
             get
             {
-                return this.PasswordField;
+                return this.RoleField;
             }
             set
             {
-                this.PasswordField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SecAns
-        {
-            get
-            {
-                return this.SecAnsField;
-            }
-            set
-            {
-                this.SecAnsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SecQn
-        {
-            get
-            {
-                return this.SecQnField;
-            }
-            set
-            {
-                this.SecQnField = value;
+                this.RoleField = value;
             }
         }
         
@@ -232,6 +202,9 @@ public interface IMyUserBO
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyUserBO/PrecheckForResetPassword", ReplyAction="http://tempuri.org/IMyUserBO/PrecheckForResetPasswordResponse")]
     string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMyUserBO/ValidateLogin", ReplyAction="http://tempuri.org/IMyUserBO/ValidateLoginResponse")]
+    SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -301,5 +274,10 @@ public partial class MyUserBOClient : System.ServiceModel.ClientBase<IMyUserBO>,
     public string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
     {
         return base.Channel.PrecheckForResetPassword(resetPasswordRequest);
+    }
+    
+    public SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password)
+    {
+        return base.Channel.ValidateLogin(username, password);
     }
 }

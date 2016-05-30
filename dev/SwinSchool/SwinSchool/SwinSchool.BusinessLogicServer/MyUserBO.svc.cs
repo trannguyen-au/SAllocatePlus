@@ -100,5 +100,25 @@ namespace SwinSchool.BusinessLogicServer
 
             return errors;
         }
+
+
+        public MyUserDto ValidateLogin(string username, string password)
+        {
+            var user = _myUserDao.GetByUserName(username);
+            if (user == null)
+                return null;
+
+            var dto = new MyUserDto()
+            {
+                UserID = user.UserID,
+                Address = user.Address,
+                Email = user.Email,
+                Name = user.Name,
+                Role = user.Role,
+                Tel = user.Tel
+            };
+
+            return dto;
+        }
     }
 }

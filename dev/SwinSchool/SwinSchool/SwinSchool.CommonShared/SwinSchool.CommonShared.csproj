@@ -51,6 +51,7 @@
     <Compile Include="Dto\ResetPasswordRequestDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomManager.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

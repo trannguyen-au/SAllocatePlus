@@ -92,5 +92,11 @@ namespace SwinSchool.DAL.DAO.AdoImpl
             }
             else return null;
         }
+
+
+        public MyUser GetByUserName(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
