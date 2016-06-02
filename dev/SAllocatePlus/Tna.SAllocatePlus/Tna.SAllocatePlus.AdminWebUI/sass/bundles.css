@@ -1,0 +1,50 @@
+table.wn-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: transparent; }
+  table.wn-table > thead > tr > th {
+    font-weight: normal;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    color: #467ea9;
+    padding: 8px; }
+  table.wn-table > tbody > tr > td {
+    border-bottom: 1px solid #eee;
+    padding: 8px; }
+    table.wn-table > tbody > tr > td .btn-action {
+      visibility: hidden; }
+    table.wn-table > tbody > tr > td.color-cell {
+      position: relative;
+      padding-left: 13px;
+      border-bottom: 0; }
+      table.wn-table > tbody > tr > td.color-cell span.color-block {
+        position: absolute;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        width: 5px; }
+  table.wn-table > tbody > tr.active > td {
+    background: #eee; }
+    table.wn-table > tbody > tr.active > td .btn-action {
+      visibility: visible; }
+  table.wn-table.table-clickable > tbody > tr:hover > td,
+  table.wn-table.table-clickable > tr:hover > td {
+    background: #eee; }
+    table.wn-table.table-clickable > tbody > tr:hover > td .btn-action,
+    table.wn-table.table-clickable > tr:hover > td .btn-action {
+      visibility: visible; }
+  table.wn-table.table-clickable > tbody > tr > td,
+  table.wn-table.table-clickable > tr > td {
+    cursor: pointer; }
+  table.wn-table.table-clickable > tbody > tr.active:hover > td,
+  table.wn-table.table-clickable > tr.active:hover > td,
+  table.wn-table.table-clickable > tbody > tr.non-clickable > td,
+  table.wn-table.table-clickable > tr.non-clickable > td {
+    cursor: default; }
+  table.wn-table label,
+  table.wn-table label.control-label {
+    font-weight: normal; }
+
+/*# sourceMappingURL=bundles.css.map */

@@ -1,0 +1,80 @@
+@import "_variables.scss";
+
+table.wn-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse:collapse;
+    border-spacing: 0;
+    background: transparent;
+
+    > thead {
+        > tr > th {
+            font-weight:normal;
+            border-top: $wnTableHeaderBorderStyle;
+            border-bottom: $wnTableHeaderBorderStyle;
+            color: #467ea9;
+            padding: $wnTableCellPadding;
+        }
+    }
+
+    > tbody {
+        > tr > td {
+            border-bottom: $wnTableRowBorderStyle;
+            padding: $wnTableCellPadding;
+            
+            .btn-action {
+                visibility:hidden;
+            }
+
+            &.color-cell {
+                position:relative;
+                padding-left:$wnTableCellPadding + $color-block-width;
+                border-bottom:0;
+
+                span.color-block {
+                    position:absolute; 
+                    height:100%; 
+                    left:0px; 
+                    top:0px; 
+                    width: $color-block-width;
+                }
+            }
+        }
+
+
+        > tr.active > td {
+            background: $wnTableHighlightRowColor;
+            .btn-action {
+                visibility:visible;
+            }
+        }
+    }
+
+    &.table-clickable {
+        > tbody > tr:hover > td,
+        > tr:hover > td {
+            background: $wnTableHighlightRowColor;
+        
+            .btn-action {
+                visibility:visible;
+            }
+        }
+
+        > tbody >tr> td,
+        > tr >td {
+            cursor: pointer;
+        }
+
+        > tbody > tr.active:hover> td,
+        > tr.active:hover >td,
+        > tbody > tr.non-clickable > td,
+        > tr.non-clickable > td {
+            cursor: default;
+        }
+    }
+
+    label,
+    label.control-label {
+        font-weight:normal;
+    }
+}

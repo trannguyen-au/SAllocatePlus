@@ -24,7 +24,7 @@ namespace Tna.SAllocatePlus.AdminWebUI
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap/dist/css/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

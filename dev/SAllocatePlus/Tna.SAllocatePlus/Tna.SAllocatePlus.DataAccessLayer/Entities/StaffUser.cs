@@ -11,7 +11,6 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
     public class StaffUser
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public Guid StaffUserID { get; set; }
 
         [Required]

@@ -13,7 +13,7 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201605250657195_InitialCreate"; }
+            get { return "201605260629482_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

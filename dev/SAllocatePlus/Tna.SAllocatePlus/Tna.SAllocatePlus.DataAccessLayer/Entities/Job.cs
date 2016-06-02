@@ -25,7 +25,6 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
         public int StaffRequired { get; set; }
         public string JobDetails { get; set; }
         public virtual Staff JobSupervisor { get; set; }
-
         public virtual Region JobRegion { get; set; }
         public virtual List<JobStaff> JobStaffList { get; set; }
     }

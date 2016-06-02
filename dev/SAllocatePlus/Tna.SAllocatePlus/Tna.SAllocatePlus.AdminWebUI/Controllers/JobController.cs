@@ -19,7 +19,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
         // GET: Job
         public ActionResult Index()
         {
-            var jobList = _jobServiceClient.GetJobsByRegion("AU");
+            var jobList = _jobServiceClient.GetJobsByRegion("AU-VIC");
 
             return View(jobList);
         }

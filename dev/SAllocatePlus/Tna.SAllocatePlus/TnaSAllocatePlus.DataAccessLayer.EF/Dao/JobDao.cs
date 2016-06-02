@@ -24,7 +24,7 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Dao
 
         public List<Job> FindByRegion(Region region)
         {
-            return _context.JobSet.Where(j => j.JobRegion == region).ToList();
+            return _context.JobSet.Where(j => j.JobRegion != null && j.JobRegion.RegionID== region.RegionID).ToList();
         }
 
         public Job Get(int bookID)

@@ -1,87 +1,26 @@
 ﻿@model IEnumerable<Tna.SAllocatePlus.CommonShared.Dto.JobDto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Job listing";
 }
 
-<h2>Index</h2>
+<div ng-app="jobApp">
+    <h2 ng-bind="AppTitle">Job Listing</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BookID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SiteName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SiteAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StaffRequired)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SupervisorStaffID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SupervisorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobRegion)
-        </th>
-        <th></th>
-    </tr>
+    <div ng-view></div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SiteName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SiteAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StaffRequired)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SupervisorStaffID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SupervisorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobRegion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@section scripts {
+
+    <script>
+        var resourceUrl = {
+
+        }
+    </script>
+
+    <script src="~/AppJs/helpers/ajax-helper.js"></script>
+
+    <script src="~/AppJs/jobApp.js"></script>
+    <script src="~/AppJs/controllers/jobDetailCtrl.js"></script>
+    <script src="~/AppJs/controllers/jobListCtrl.js"></script>
 }
-
-</table>
