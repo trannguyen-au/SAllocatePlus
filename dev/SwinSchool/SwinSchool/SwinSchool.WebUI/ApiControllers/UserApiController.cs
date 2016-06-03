@@ -16,14 +16,14 @@ namespace SwinSchool.WebUI.ApiControllers
 {
     public class UserApiController : ApiController
     {
-        MyUserBOClient _myUserService = null;
+        MyUserBOClient _myUserService = ServiceFactory.CreateUserBoClient();
 
-        UserAccountQueueClient _myUserAccountQueueService = null;
+        //UserAccountQueueClient _myUserAccountQueueService = null;
 
         public UserApiController()
         {
             _myUserService = new MyUserBOClient("wsHttpBinding_IMyUserBO");
-            _myUserAccountQueueService = new UserAccountQueueClient("UserAccountEndpoint");
+            //_myUserAccountQueueService = new UserAccountQueueClient("UserAccountEndpoint");
         }
 
         [HttpPost]
@@ -38,15 +38,14 @@ namespace SwinSchool.WebUI.ApiControllers
 
             try
             {
-
-
                 var resetPasswordDto = new ResetPasswordRequestDto()
                 {
-                    SecAns = resetPasswordModel.SecAns,
-                    UserId = resetPasswordModel.UserID
+                    OldPassword = resetPasswordModel.OldPassword,
+                    UserId = resetPasswordModel.UserID,
+                    NewPassword = resetPasswordModel.NewPassword
                 };
 
-                var errors = _myUserService.PrecheckForResetPassword(resetPasswordDto);
+                var errors = _myUserService.ResetPassword(resetPasswordDto);
 
                 if (errors.Length > 0)
                 {
@@ -55,12 +54,12 @@ namespace SwinSchool.WebUI.ApiControllers
                 }
 
                 // create a message to do password reset via MSMQ
-                MsmqMessage<ResetPasswordRequestDto> resetPwdMsg = new MsmqMessage<ResetPasswordRequestDto>(resetPasswordDto);
-                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
-                {
-                    _myUserAccountQueueService.SendPasswordResetMessage(resetPwdMsg);
-                    scope.Complete();
-                }
+                //MsmqMessage<ResetPasswordRequestDto> resetPwdMsg = new MsmqMessage<ResetPasswordRequestDto>(resetPasswordDto);
+                //using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+                //{
+                //    _myUserAccountQueueService.SendPasswordResetMessage(resetPwdMsg);
+                //    scope.Complete();
+                //}
 
                 jsonMessage.Success("Ok", resetPasswordModel);
                 return Request.CreateResponse(HttpStatusCode.Accepted, jsonMessage);

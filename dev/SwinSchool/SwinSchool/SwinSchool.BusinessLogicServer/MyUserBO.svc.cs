@@ -75,8 +75,21 @@ namespace SwinSchool.BusinessLogicServer
         /// <returns></returns>
         public List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest)
         {
-            List<string> errors = PrecheckForResetPassword(resetPasswordRequest);
-            
+            List<string> errors = new List<string>();
+
+            var user = _myUserDao.GetById(resetPasswordRequest.UserId);
+            if (user == null)
+                errors.Add("User is not found");
+
+            if (!user.Password.Equals(resetPasswordRequest.OldPassword))
+                errors.Add("Your password doesn't match");
+
+            if (errors.Count > 0)
+                return errors;
+
+            user.Password = resetPasswordRequest.NewPassword;
+            _myUserDao.Update(user);
+
             return errors;
         }
 
@@ -91,34 +104,41 @@ namespace SwinSchool.BusinessLogicServer
         {
             List<string> errors = new List<string>();
             // Reset password validation:
-            var user = _myUserDao.GetById(resetPasswordRequest.UserId);
-            if (user == null)
-                errors.Add("User is not found");
+            //var user = _myUserDao.GetById(resetPasswordRequest.UserId);
+            //if (user == null)
+            //    errors.Add("User is not found");
 
-            if (!user.SecAns.Equals(resetPasswordRequest.SecAns))
-                errors.Add("Your security answer is invalid");
+            //if (!user.SecAns.Equals(resetPasswordRequest.SecAns))
+            //    errors.Add("Your security answer is invalid");
 
             return errors;
         }
 
 
-        public MyUserDto ValidateLogin(string username, string password)
+        public MyUserDto ValidateLogin(string username, byte[] encryptedPassword)
         {
             var user = _myUserDao.GetByUserName(username);
             if (user == null)
                 return null;
 
-            var dto = new MyUserDto()
+            // check for valid password
+            var userPassword = EncryptionService.EncryptPassword(user.Password);
+            if(Encoding.UTF8.GetString(encryptedPassword)== Encoding.UTF8.GetString(userPassword))
             {
-                UserID = user.UserID,
-                Address = user.Address,
-                Email = user.Email,
-                Name = user.Name,
-                Role = user.Role,
-                Tel = user.Tel
-            };
+                var dto = new MyUserDto()
+                {
+                    UserID = user.UserID,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Name = user.Name,
+                    Role = user.Role,
+                    Tel = user.Tel
+                };
 
-            return dto;
+                return dto;
+            }
+
+            return null;
         }
     }
 }

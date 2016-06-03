@@ -7,8 +7,6 @@ using System.Web;
 
 namespace SwinSchool.WebUI.Service
 {
-
-
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "IMyUserBO", SessionMode = System.ServiceModel.SessionMode.Required)]
     public interface IMyUserBO
@@ -36,7 +34,7 @@ namespace SwinSchool.WebUI.Service
         string[] PrecheckForResetPassword(SwinSchool.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMyUserBO/ValidateLogin", ReplyAction = "http://tempuri.org/IMyUserBO/ValidateLoginResponse")]
-        SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password);
+        SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, byte[] password);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -54,22 +52,22 @@ namespace SwinSchool.WebUI.Service
         }
 
         public MyUserBOClient(string endpointConfigurationName) :
-            base(endpointConfigurationName)
+                base(endpointConfigurationName)
         {
         }
 
         public MyUserBOClient(string endpointConfigurationName, string remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
+                base(endpointConfigurationName, remoteAddress)
         {
         }
 
         public MyUserBOClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
+                base(endpointConfigurationName, remoteAddress)
         {
         }
 
         public MyUserBOClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-            base(binding, remoteAddress)
+                base(binding, remoteAddress)
         {
         }
 
@@ -108,7 +106,7 @@ namespace SwinSchool.WebUI.Service
             return base.Channel.PrecheckForResetPassword(resetPasswordRequest);
         }
 
-        public SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, string password)
+        public SwinSchool.CommonShared.Dto.MyUserDto ValidateLogin(string username, byte[] password)
         {
             return base.Channel.ValidateLogin(username, password);
         }

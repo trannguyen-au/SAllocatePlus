@@ -1,5 +1,7 @@
-﻿using SwinSchool.CommonShared;
+﻿using Newtonsoft.Json;
+using SwinSchool.CommonShared;
 using SwinSchool.WebUI.Models;
+using SwinSchool.WebUI.Security;
 using SwinSchool.WebUI.Service;
 using System;
 using System.Collections.Generic;
@@ -14,43 +16,81 @@ namespace SwinSchool.WebUI.Controllers
     {
         MyUserBOClient _myUserService = new MyUserBOClient("wsHttpBinding_IMyUserBO");
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole(Constants.RoleValue.Administrator))
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+                else if (User.IsInRole(Constants.RoleValue.Employee))
+                {
+                    return RedirectToAction("Index", "Employee");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel vm)
+        [AllowAnonymous]
+        public ActionResult Login(LoginViewModel vm, string returnUrl = "")
         {
-            var user = _myUserService.ValidateLogin(vm.UserName, vm.Password);
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                // persist user to cookie authentication ticket so that the subsequence requests will be authenticated.
-                FormsAuthentication.SetAuthCookie(user.UserID, true);
-
-                // authorization process
-                if (user.Role == Constants.RoleValue.Administrator)
+                try
                 {
-                    return RedirectToAction("AdminUser");
+                    var userPrincipal = UserPrincipal.ValidateLogin(vm.UserName, vm.Password);
+                    var userData = JsonConvert.SerializeObject(userPrincipal.SerializedData);
+
+                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+                        1,
+                        userPrincipal.Identity.Name,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(30),
+                        false, //pass here true, if you want to implement remember me functionality
+                        userData);
+
+                    string encTicket = FormsAuthentication.Encrypt(authTicket);
+                    HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                    Response.Cookies.Add(faCookie);
+
+                    if(returnUrl!="")
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else if (userPrincipal.IsInRole(Constants.RoleValue.Administrator))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if (userPrincipal.IsInRole(Constants.RoleValue.Employee))
+                    {
+                        return RedirectToAction("Index", "Employee");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                else return RedirectToAction("UserProfile");
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Incorrect username and/or password");
+                }
             }
 
-            ModelState.AddModelError("LoginFailed", "Login failed");
             return View(vm);
         }
 
-        [Authorize(Roles="Administrator")]
-        public ActionResult AdminUser()
+        [AllowAnonymous]
+        public ActionResult LogOut()
         {
-
-            return View();
-        }
-
-        [Authorize(Roles = "Employee,Administrator")]
-        public ActionResult UserProfile()
-        {
-            return View();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account", null);
         }
     }
 }

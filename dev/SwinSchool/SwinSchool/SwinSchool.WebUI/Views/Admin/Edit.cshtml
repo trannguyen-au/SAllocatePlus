@@ -1,0 +1,20 @@
+﻿@model SwinSchool.CommonShared.Dto.MyUserDto
+
+@{
+    ViewBag.Title = "Create";
+}
+    <h2>Update user</h2>
+    <hr />
+
+    @Html.Partial("~/Views/Shared/Partial/_EmployeeProfilePartial.cshtml")
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#btnDelete").click(function () {
+                $("#hfAction").val("Delete");
+                $("form").submit();
+            })
+        })
+    </script>
+}
