@@ -1,15 +1,25 @@
-﻿@model IEnumerable<MyUserDto>
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Welcome to SECURE</h2>
+<hr />
+<p>
+    SECURE is a company proud of developing secure enterprise applications. 
+    The company is going to develop a “secure” web-based system to manage its employees’ records. 
+    It has at least the following functional requirements:
 
-<ul>
-    @foreach (var myUser in Model)
-    {
-        <li>
-            @myUser.Name - (@myUser.UserID)
-        </li>
-    }
-</ul>
+    <ol>
+        <li>There are two roles in the system, namely Administrator and Employee</li>
+        <li>Administrator and Employee have different login credentials</li>
+        <li>Administrator can add, delete, edit, and review individual employee’s record</li>
+        <li>Employee can review their own details (excluding password), but not others</li>
+        <li>Employee can change their own details (including password), but not others</li>
+    </ol>
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">Login to secure</div>
+    <div class="panel-body">
+        <a class="btn btn-default" href="@Url.Action("Login","Account")">Login</a>
+    </div>
+</div>

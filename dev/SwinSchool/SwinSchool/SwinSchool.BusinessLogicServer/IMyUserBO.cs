@@ -27,5 +27,8 @@ namespace SwinSchool.BusinessLogicServer
         List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest);
         [OperationContract]
         List<string> PrecheckForResetPassword(ResetPasswordRequestDto resetPasswordRequest);
+
+        [OperationContract]
+        MyUserDto ValidateLogin(string username, byte[] password);
     }
 }

@@ -13,9 +13,10 @@ using System.Transactions;
 
 namespace SwinSchool.WebUI.Controllers
 {
-    public class UserController : Controller
+    [Authorize(Roles ="Administrator")]
+    public class AdminController : Controller
     {
-        MyUserBOClient _myUserService = new MyUserBOClient("wsHttpBinding_IMyUserBO");
+        MyUserBOClient _myUserService = ServiceFactory.CreateUserBoClient();
 
         //
         // GET: /User/
@@ -109,7 +110,6 @@ namespace SwinSchool.WebUI.Controllers
             ResetPasswordRequestViewModel vm = new ResetPasswordRequestViewModel()
             {
                 Name = user.Name,
-                SecQn = user.SecQn,
                 UserID = user.UserID
             };
             

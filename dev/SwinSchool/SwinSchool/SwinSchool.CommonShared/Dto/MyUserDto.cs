@@ -15,16 +15,12 @@ namespace SwinSchool.CommonShared.Dto
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Password { get; set; }
-        [DataMember]
         public string Email { get; set; }
         [DataMember]
         public string Tel { get; set; }
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        public string SecQn { get; set; }
-        [DataMember]
-        public string SecAns { get; set; }
+        public string Role { get; set; }
     }
 }

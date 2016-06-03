@@ -11,8 +11,9 @@ namespace SwinSchool.WebUI.Models
         [Required]
         public string UserID { get; set; }
         public string Name { get; set; }
-        public string SecAns { get; set; }
-        public string SecQn { get; set; }
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string ConfirmPassword { get; set; }
 
     }
 }

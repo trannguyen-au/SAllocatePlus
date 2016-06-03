@@ -61,5 +61,11 @@ namespace SwinSchool.DAL.DAO.Impl
             }
             return 0;
         }
+
+
+        public Entities.MyUser GetByUserName(string username)
+        {
+            return _context.MyUsers.FirstOrDefault(u => u.UserID == username);
+        }
     }
 }

@@ -62,22 +62,6 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.SecQn, new { @class = "control-label col-xs-3" })
-
-                <div class="col-xs-9">
-                    @Html.TextBoxFor(model => model.SecQn, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SecQn)
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.SecAns, new { @class = "control-label col-xs-3" })
-
-                <div class="col-xs-9">
-                    @Html.TextBoxFor(model => model.SecAns, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SecAns)
-                </div>
-            </div>
-            <div class="form-group">
                 <div class="col-xs-push-3 col-xs-9">
                     <input type="submit" value="Create" class="btn btn-primary" />
                     @Html.ActionLink("Back to List", "Index", null ,new {@class="btn btn-default" })

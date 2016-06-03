@@ -1,0 +1,10 @@
+﻿@model SwinSchool.CommonShared.Dto.MyUserDto
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employee profile</h2>
+<hr />
+
+@Html.Partial("~/Views/Shared/Partial/_EmployeeProfilePartial.cshtml", Model)
