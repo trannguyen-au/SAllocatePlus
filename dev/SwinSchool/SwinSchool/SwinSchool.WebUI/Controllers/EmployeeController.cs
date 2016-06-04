@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SwinSchool.WebUI.Controllers
 {
-    [Authorize(Roles = "Administrator|Employee")]
+    [Authorize(Roles = "Administrator,Employee")]
     public class EmployeeController : Controller
     {
         MyUserBOClient _myUserService = ServiceFactory.CreateUserBoClient();

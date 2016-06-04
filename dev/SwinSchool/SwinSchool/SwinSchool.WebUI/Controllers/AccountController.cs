@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Providers;
 using System.Web.Security;
 
 namespace SwinSchool.WebUI.Controllers
@@ -50,7 +51,7 @@ namespace SwinSchool.WebUI.Controllers
 
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
                         1,
-                        userPrincipal.Identity.Name,
+                    userPrincipal.Identity.Name,
                         DateTime.Now,
                         DateTime.Now.AddMinutes(30),
                         false, //pass here true, if you want to implement remember me functionality
@@ -60,15 +61,15 @@ namespace SwinSchool.WebUI.Controllers
                     HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                     Response.Cookies.Add(faCookie);
 
-                    if(returnUrl!="")
+                    if (returnUrl != "")
                     {
                         return Redirect(returnUrl);
                     }
-                    else if (userPrincipal.IsInRole(Constants.RoleValue.Administrator))
+                    else if (Roles.IsUserInRole(vm.UserName, Constants.RoleValue.Administrator))
                     {
                         return RedirectToAction("Index", "Admin");
                     }
-                    else if (userPrincipal.IsInRole(Constants.RoleValue.Employee))
+                    else if (Roles.IsUserInRole(vm.UserName, Constants.RoleValue.Employee))
                     {
                         return RedirectToAction("Index", "Employee");
                     }

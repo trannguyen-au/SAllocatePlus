@@ -8,13 +8,13 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 
 namespace SwinSchool.WebUI.Security
 {
     public class UserPrincipal : IPrincipal
     {
         private UserIdentity _identity;
-        private List<string> _roleList;
         MyUserBOClient _clientProxy = ServiceFactory.CreateUserBoClient();
 
         MyUserDto _serializedData;
@@ -29,25 +29,7 @@ namespace SwinSchool.WebUI.Security
 
         public bool IsInRole(string role)
         {
-            if(role.Contains("|"))
-            {
-                var checkRoleList = role.Split("|".ToCharArray());
-                foreach(var roleItem in checkRoleList)
-                {
-                    if (_roleList.Contains(roleItem)) return true;
-                }
-                return false;
-            }
-            else if(role.Contains("&"))
-            {
-                var checkRoleList = role.Split("&".ToCharArray());
-                foreach (var roleItem in checkRoleList)
-                {
-                    if (!_roleList.Contains(roleItem)) return false;
-                }
-                return true;
-            }
-            return _roleList.Contains(role);
+            return Roles.IsUserInRole(_identity.UserID, role);
         }
 
         public MyUserDto SerializedData
@@ -62,7 +44,6 @@ namespace SwinSchool.WebUI.Security
         {
             _serializedData = userData;
             _identity = new UserIdentity(userData);
-            _roleList = _identity.Role.Split(",".ToCharArray()).ToList();
         }
 
         public UserPrincipal(string userId)
@@ -81,6 +62,15 @@ namespace SwinSchool.WebUI.Security
             if(userData == null)
             {
                 throw new Exception("Your username and password is invalid");
+            }
+
+            // a quick integration method to copy current role data from enterprise database to 
+            // client sql server database. This will make sure that the user role data is stored on the RoleDatabase
+            // so that the SqlRoleProvider works accordingly.
+            var userRoleData = Roles.GetRolesForUser(userData.UserID);
+            if (userRoleData== null || userRoleData.Length == 0)
+            {
+                Roles.AddUserToRole(userData.UserID, userData.Role);
             }
             return new UserPrincipal(userData);
         }
