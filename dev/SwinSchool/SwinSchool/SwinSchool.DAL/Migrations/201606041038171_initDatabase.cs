@@ -3,7 +3,7 @@ namespace SwinSchool.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initdb : DbMigration
+    public partial class initDatabase : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +19,6 @@ namespace SwinSchool.DAL.Migrations
                         Address = c.String(maxLength: 60),
                         SecQn = c.String(maxLength: 60),
                         SecAns = c.String(maxLength: 60),
-                        Role = c.String(nullable: false, maxLength: 60),
                     })
                 .PrimaryKey(t => t.UserID);
             

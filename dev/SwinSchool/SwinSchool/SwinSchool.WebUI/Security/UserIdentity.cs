@@ -15,7 +15,6 @@ namespace SwinSchool.WebUI.Security
         private string _fullName;
         private string _tel;
         private string _address;
-        private string _role;
 
         #region IIdentity methods
         public string AuthenticationType
@@ -51,7 +50,6 @@ namespace SwinSchool.WebUI.Security
             this._address = user.Address;
             this._email = user.Email;
             this._fullName = user.Name;
-            this._role = user.Role;
             this._tel = user.Tel;
             this._userID = user.UserID;
 
@@ -77,11 +75,6 @@ namespace SwinSchool.WebUI.Security
         public string Address
         {
             get { return _address; }
-        }
-
-        public string Role
-        {
-            get { return _role; }
         }
         #endregion
     }

@@ -70,7 +70,7 @@ namespace SwinSchool.WebUI.Security
             var userRoleData = Roles.GetRolesForUser(userData.UserID);
             if (userRoleData== null || userRoleData.Length == 0)
             {
-                Roles.AddUserToRole(userData.UserID, userData.Role);
+                Roles.AddUserToRole(userData.UserID, Constants.RoleValue.Employee); // set the default role to Employee
             }
             return new UserPrincipal(userData);
         }

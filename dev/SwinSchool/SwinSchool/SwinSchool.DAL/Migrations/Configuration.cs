@@ -30,8 +30,7 @@ namespace SwinSchool.DAL.Migrations
                         Tel = "04564353" + i.ToString("00"),
                         Password = "123456",
                         SecQn = "Favorite color?",
-                        SecAns = "Green",
-                        Role = Constants.RoleValue.Employee
+                        SecAns = "Green"
                     });
             }
             sampleUserList.Add(
@@ -44,8 +43,7 @@ namespace SwinSchool.DAL.Migrations
                         Tel = "0456435356",
                         Password = "123456",
                         SecQn = "Favorite color?",
-                        SecAns = "Red",
-                        Role = Constants.RoleValue.Administrator
+                        SecAns = "Red"
                     });
 
             sampleUserList.ForEach(s => context.MyUsers.Add(s));

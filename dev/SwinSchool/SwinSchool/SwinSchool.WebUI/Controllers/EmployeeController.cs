@@ -21,6 +21,7 @@ namespace SwinSchool.WebUI.Controllers
             return View(userDetail);
         }
 
+        [Authorize(Roles = "Administrator,Employee")]
         public ActionResult ResetPassword(string id)
         {
             var user = _myUserService.GetUserById(id);

@@ -20,7 +20,5 @@ namespace SwinSchool.CommonShared.Dto
         public string Tel { get; set; }
         [DataMember]
         public string Address { get; set; }
-        [DataMember]
-        public string Role { get; set; }
     }
 }

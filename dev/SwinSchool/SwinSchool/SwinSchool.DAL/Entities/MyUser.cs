@@ -36,8 +36,5 @@ namespace SwinSchool.DAL.Entities
 
         [MaxLength(60)]
         public string SecAns { get; set; }
-        [MaxLength(60)]
-        [Required]
-        public string Role { get; set; }
     }
 }

@@ -131,7 +131,6 @@ namespace SwinSchool.BusinessLogicServer
                     Address = user.Address,
                     Email = user.Email,
                     Name = user.Name,
-                    Role = user.Role,
                     Tel = user.Tel
                 };
 

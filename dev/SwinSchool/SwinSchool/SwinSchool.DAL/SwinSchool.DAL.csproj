@@ -58,9 +58,9 @@
     <Compile Include="Entities\MyUser.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="MapToColumnAttribute.cs" />
-    <Compile Include="Migrations\201605301402134_initdb.cs" />
-    <Compile Include="Migrations\201605301402134_initdb.Designer.cs">
-      <DependentUpon>201605301402134_initdb.cs</DependentUpon>
+    <Compile Include="Migrations\201606041038171_initDatabase.cs" />
+    <Compile Include="Migrations\201606041038171_initDatabase.Designer.cs">
+      <DependentUpon>201606041038171_initDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605301402134_initdb.resx">
-      <DependentUpon>201605301402134_initdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606041038171_initDatabase.resx">
+      <DependentUpon>201606041038171_initDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

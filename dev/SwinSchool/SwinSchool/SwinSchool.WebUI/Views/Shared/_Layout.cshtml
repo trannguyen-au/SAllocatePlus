@@ -56,7 +56,7 @@
                 if (User != null && User is SwinSchool.WebUI.Security.UserPrincipal)
                 {
                     <p class="navbar-text">
-                        Your are in role: @(((SwinSchool.WebUI.Security.UserPrincipal)User).SerializedData.Role)
+                        Your are in role: @(Roles.GetRolesForUser().FirstOrDefault())
                     </p>
                 }
             }

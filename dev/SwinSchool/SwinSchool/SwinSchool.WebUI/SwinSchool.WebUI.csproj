@@ -264,7 +264,7 @@
     <Content Include="Views\Admin\ResetPasswordSuccess.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\ProductListPartial.cshtml" />
-    <Content Include="Views\Cart\View.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Cart\CartProductListPartial.cshtml" />
     <Content Include="Views\Cart\CheckoutSuccess.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />

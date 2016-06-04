@@ -54,7 +54,7 @@ namespace SwinSchool.WebUI.Controllers
             var a = _shopCartService.GetTotalCart();
             return RedirectToAction("Index");
         }
-        public ActionResult View()
+        public ActionResult ViewCart()
         {
             var vm = new CartViewModel();
             vm.ProductList = _shopCartService.GetCart().ToList();

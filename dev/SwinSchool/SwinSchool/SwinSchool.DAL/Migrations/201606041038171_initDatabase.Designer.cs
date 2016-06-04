@@ -7,13 +7,13 @@ namespace SwinSchool.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initdb : IMigrationMetadata
+    public sealed partial class initDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initdb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605301402134_initdb"; }
+            get { return "201606041038171_initDatabase"; }
         }
         
         string IMigrationMetadata.Source
