@@ -29,61 +29,157 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
             AddStaff(context);
             // add users
             AddUser(context);
-            //  This method will be called after migrating to the latest version.
+            // add role
+            AddRole(context);
+            // add user to role
+            AddUserToRole(context);
+            // add access rights for staff user 
+            AssignAccessRights(context);
+        }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+        private void AssignAccessRights(TnaContext context)
+        {
+            var costCentreList = context.CostCentreSet.ToList();
+            var wery = context.StaffSet.FirstOrDefault(u => u.Username == "werynguyen");
+            wery.AccessList = new List<StaffAccessRight>();
+            wery.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-VIC",
+                CostCentre = costCentreList.FirstOrDefault(c=>c.CostCentreCode == "AU-VIC")
+            });
+            wery.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-NSW",
+                StaffUserID = wery.StaffID,
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-NSW")
+            });
+            wery.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-QLD",
+                StaffUserID = wery.StaffID,
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-QLD")
+            });
+            wery.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-WA",
+                StaffUserID = wery.StaffID,
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-WA")
+            });
+            wery.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-SAT",
+                StaffUserID = wery.StaffID,
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-SAT")
+            });
+
+            var nguyen = context.StaffSet.FirstOrDefault(u => u.Username == "nguyennt");
+            nguyen.AccessList = new List<StaffAccessRight>();
+            nguyen.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-VIC",
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-VIC")
+            });
+            nguyen.AccessList.Add(new StaffAccessRight()
+            {
+                AccessRights = AccessRightsEnum.Write,
+                CostCentreCode = "AU-NSW",
+                StaffUserID = wery.StaffID,
+                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-NSW")
+            });
+
+            context.SaveChanges();
+
+        }
+
+        private void AddUserToRole(TnaContext context)
+        {
+            var allStaff = context.StaffSet.ToList();
+            var allRoles = context.RoleSet.ToList();
+            var adminRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleEnum.Administrator);
+
+            adminRole.StaffList = new List<Staff>();
+            adminRole.StaffList.Add(context.StaffSet.FirstOrDefault(u => u.Username == "werynguyen"));
+            adminRole.StaffList.Add(context.StaffSet.FirstOrDefault(u => u.Username == "nguyennt"));
+
+            var employeeRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleEnum.Employee);
+            employeeRole.StaffList = new List<Staff>();
+            employeeRole.StaffList.AddRange(allStaff);
+
+            context.SaveChanges();
+
+        }
+
+        private void AddRole(TnaContext context)
+        {
+            context.RoleSet.AddOrUpdate(r => r.RoleName, new Role
+            {
+                RoleName = Constants.RoleEnum.Administrator
+            });
+
+            context.RoleSet.AddOrUpdate(r => r.RoleName, new Role
+            {
+                RoleName = Constants.RoleEnum.Employee
+            });
+
+            context.SaveChanges();
         }
 
         private void AddRegion(TnaContext context)
         {
-            var regionList = new Region[] {
-                new Region() {RegionID="AU",RegionName= "Australia"},
-                new Region() {RegionID="AU-VIC",RegionName= "Victoria"},
-                new Region() {RegionID="AU-NSW",RegionName= "New South Wales"},
-                new Region() {RegionID="AU-QLD",RegionName= "Queensland"},
-                new Region() {RegionID="AU-WA",RegionName= "Western Australia"},
-                new Region() {RegionID="AU-SAT",RegionName= "Satelite regions"}
+            var regionList = new CostCentre[] {
+                new CostCentre() {CostCentreCode="AU",Name= "Australia"},
+                new CostCentre() {CostCentreCode="AU-VIC",Name= "Victoria"},
+                new CostCentre() {CostCentreCode="AU-NSW",Name= "New South Wales"},
+                new CostCentre() {CostCentreCode="AU-QLD",Name= "Queensland"},
+                new CostCentre() {CostCentreCode="AU-WA",Name= "Western Australia"},
+                new CostCentre() {CostCentreCode="AU-SAT",Name= "Satelite regions"}
             };
 
             foreach (var region in regionList)
             {
-                context.RegionSet.AddOrUpdate(region);
+                context.CostCentreSet.AddOrUpdate(r=>r.CostCentreCode, region);
                 context.SaveChanges();
             }
         }
 
         private void AddUser(Tna.SAllocatePlus.DataAccessLayer.EF.TnaContext context)
         {
-            StaffUser user = new StaffUser()
+            var costCentreList = context.CostCentreSet.ToList();
+            Staff user = new Staff()
             {
                 Email = "nguyennt86@gmail.com",
                 Password = "123456789",
-                StaffName = "Nguyen T Nguyen",
+                FirstName = "Nguyen",
+                SurName="Tran",
                 Username = "nguyennt",
-                StaffUserID = Guid.NewGuid()
+                Active = true,
+                Mobile = "0432431067",
+                StaffCostCentre = "AU-VIC",
+                CostCentre = costCentreList.FirstOrDefault(cc=>cc.CostCentreCode == "AU-VIC")
             };
 
-            context.StaffUserSet.Add(user);
+            context.StaffSet.AddOrUpdate(u => u.Username, user);
 
-            user = new StaffUser()
+            user = new Staff()
             {
-                Email = "nguyennt86@gmail.com",
-                Password = "admin",
-                StaffName = "Administrator",
-                Username = "admin",
-                StaffUserID = Guid.NewGuid()
+                Email = "6586880@student.swin.edu.au",
+                Password = "123456789",
+                FirstName = "Wery",
+                SurName = "Nguyen",
+                Username = "werynguyen",
+                Active = true,
+                Mobile = "0432431067",
+                StaffCostCentre = "AU-NSW",
+                CostCentre = costCentreList.FirstOrDefault(cc => cc.CostCentreCode == "AU-NSW")
             };
 
-            context.StaffUserSet.AddOrUpdate(u=>u.Username, user);
+            context.StaffSet.AddOrUpdate(u => u.Username, user);
             context.SaveChanges();
         }
 
@@ -93,7 +189,7 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
             if (context.StaffSet.Count() >= totalStaffCount) return;
 
             var session = GetCodeGenFac().CreateSession();
-            var regionList = context.RegionSet.ToList();
+            var costCentreList = context.CostCentreSet.ToList();
             Random rand = new Random();
             var firstNameList = new List<string>() {
                 "REBECCA","ERI","AKI","ELISE","KAI","RUI","DANIELLE","MARIO","JAIME","PHILLIP","TIHANA","ERICA","DIHENG (WENDY)","TAMSIN","TOYAH","CHERILYA","YANG","SLAVKA","LI","CELESTE","PIERCE","SYLVESTER","RHIARN","JESSICA","STACIE","DIANE","ASHLEY","TARA","VIOLET","ANJA","CARL","SHAUN","SUSAN","JAMES","MARIA","REBEKAH","KRISTIN","LEANNE","BARRY","DAVID","SLAVKA","JENNY","SANDRA","JESSICA","CORRINE","DEON","MALCOLM","LORRAINE","KEITH","EMMA","EMMA","ELIZABETH"
@@ -104,15 +200,15 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
 
             var staffList = session.List<Staff>(totalStaffCount)
                 .Random(25)
-                    .Impose(x => x.StaffRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-VIC"))
+                    .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(c=>c.CostCentreCode == "AU-VIC"))
                 .Next(25)
-                    .Impose(x => x.StaffRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-NSW"))
+                    .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(c=>c.CostCentreCode =="AU-NSW"))
                 .Next(25)
-                    .Impose(x => x.StaffRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-QLD"))
+                    .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(c=>c.CostCentreCode =="AU-QLD"))
                 .Next(10)
-                    .Impose(x => x.StaffRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-WA"))
+                    .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(c=>c.CostCentreCode =="AU-WA"))
                 .Next(15)
-                    .Impose(x => x.StaffRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-SAT"))
+                    .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(c=>c.CostCentreCode =="AU-SAT"))
                 .All()
                     .Impose(x => x.StaffID, 0)
                     .Impose(x => x.Active, true)
@@ -141,7 +237,7 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
             var session = GetCodeGenFac().CreateSession();
 
             var nextMonday = GetNextMonday();
-            var regionList = context.RegionSet.ToList();
+            var costCentreList = context.CostCentreSet.ToList();
             Random rand = new Random();
 
             var siteName = new List<string>(){
@@ -179,20 +275,20 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
                     .Next(10)
                         .Impose(x => x.JobDate, nextMonday.AddDays(9))
                 .All().Random(25)
-                        .Impose(x => x.JobRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-VIC"))
+                        .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(r => r.CostCentreCode == "AU-VIC"))
                     .Next(25)
-                        .Impose(x => x.JobRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-NSW"))
+                        .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(r => r.CostCentreCode == "AU-NSW"))
                     .Next(25)
-                        .Impose(x => x.JobRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-QLD"))
+                        .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(r => r.CostCentreCode == "AU-QLD"))
                     .Next(10)
-                        .Impose(x => x.JobRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-WA"))
+                        .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(r => r.CostCentreCode == "AU-WA"))
                     .Next(15)
-                        .Impose(x => x.JobRegion, regionList.FirstOrDefault(r => r.RegionID == "AU-SAT"))
+                        .Impose(x => x.CostCentre, costCentreList.FirstOrDefault(r => r.CostCentreCode == "AU-SAT"))
                 .All()
                     .Impose(x => x.BookID, 0)
                     .Impose(x => x.JobStage, JobStageEnum.Booked)
                     .Impose(x => x.StaffRequired, rand.Next(10))
-                    .Impose(x => x.JobSupervisor, null)
+                    .Impose(x => x.Supervisor, null)
                 .Get();
             bool hasError = false;
             foreach (var job in jobList)

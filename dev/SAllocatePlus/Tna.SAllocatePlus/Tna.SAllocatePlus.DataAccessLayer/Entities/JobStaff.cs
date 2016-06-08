@@ -12,10 +12,10 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int JobStaffID { get; set; }
-        [Required]
-        public virtual Staff Staff { get; set; }
-        [Required]
-        public virtual Job Job { get; set; }
+        [ForeignKey("Staff")]
+        public int JSStaffID { get; set; }
+        [ForeignKey("Job")]
+        public int JSBookID { get; set; }
 
         public TimeSpan? StartTime { get; set; }
 
@@ -23,5 +23,10 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
 
         public bool IsSupervisor { get; set; }
         public bool IsStaffConfirmed { get; set; }
+
+        [Required]
+        public virtual Staff Staff { get; set; }
+        [Required]
+        public virtual Job Job { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
     {
 
         [OperationContract]
-        List<JobDto> GetJobsByRegion(string regionName);
+        List<JobDto> GetJobsByCostCentre(string regionName);
 
         [OperationContract]
         List<JobStaffDto> GetStaffListForJob(int bookID);

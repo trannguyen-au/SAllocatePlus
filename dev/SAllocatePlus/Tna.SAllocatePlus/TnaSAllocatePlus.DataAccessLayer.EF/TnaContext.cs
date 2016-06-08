@@ -13,12 +13,13 @@ namespace Tna.SAllocatePlus.DataAccessLayer.EF
     {
         public TnaContext() : base("TnaContext") { }
 
+        public DbSet<CostCentre> CostCentreSet { get; set; }
         public DbSet<Job> JobSet { get; set; }
         public DbSet<JobStaff> JobStaffSet { get; set; }
         public DbSet<JobStaffAvailability> JobStaffAvailabilitySet { get; set; }
-        public DbSet<Region> RegionSet { get; set; }
+        public DbSet<Role> RoleSet { get; set; }
         public DbSet<Staff> StaffSet{ get; set; }
-        public DbSet<StaffUser> StaffUserSet { get; set; }
+        public DbSet<StaffAccessRight> StaffAccessRightSet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

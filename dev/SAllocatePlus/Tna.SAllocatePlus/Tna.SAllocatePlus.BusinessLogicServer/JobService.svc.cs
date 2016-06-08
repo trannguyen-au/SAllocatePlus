@@ -22,11 +22,11 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
         {
             _jobDao = new JobDao();
         }
-        public List<JobDto> GetJobsByRegion(string regionId)
+        public List<JobDto> GetJobsByCostCentre(string costCentre)
         {
-            var queryResult = _jobDao.FindByRegion(new Region()
+            var queryResult = _jobDao.FindByRegion(new CostCentre()
             {
-                RegionID = regionId
+                CostCentreCode = costCentre
             });
 
             var result = new List<JobDto>();
@@ -36,8 +36,8 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
                 job.MergeTo(dto, "JobStaffList", "JobSupervisor", "JobRegion");
                 if (job.JobSupervisor != null)
                 {
-                    dto.SupervisorName = string.Join(" ", job.JobSupervisor.FirstName, job.JobSupervisor.SurName);
-                    dto.JobRegion = job.JobRegion.RegionID;
+                    dto.SupervisorName = string.Join(" ", job.Supervisor.FirstName, job.Supervisor.SurName);
+                    dto.JobRegion = job.JobCostCentre;
                 }
 
                 result.Add(dto);

@@ -8,14 +8,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tna.SAllocatePlus.DataAccessLayer.Entities
 {
-    public class StaffUser
+    public class StaffRole
     {
         [Key]
-        public Guid StaffUserID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RoleID { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string Username {get;set;}
+        public string RoleName {get;set;}
 
         [Required]
         [MaxLength(100)]

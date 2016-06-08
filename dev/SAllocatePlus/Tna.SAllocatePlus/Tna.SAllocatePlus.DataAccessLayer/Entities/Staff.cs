@@ -38,8 +38,15 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
 
         [DefaultValue(true)]
         public bool Active { get; set; }
-        
+
+        [ForeignKey("CostCentre")]
+        public string StaffCostCentre { get; set; }
+
         [Required]
-        public virtual Region StaffRegion { get; set; }
+        public virtual CostCentre CostCentre { get; set; }
+
+        public virtual List<Role> RoleList { get; set; }
+
+        public virtual List<StaffAccessRight> AccessList { get; set; }
     }
 }

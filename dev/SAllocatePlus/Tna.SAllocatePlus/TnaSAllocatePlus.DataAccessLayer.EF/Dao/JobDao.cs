@@ -22,9 +22,9 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Dao
             return _context.JobSet.ToList();
         }
 
-        public List<Job> FindByRegion(Region region)
+        public List<Job> FindByRegion(CostCentre costCentre)
         {
-            return _context.JobSet.Where(j => j.JobRegion != null && j.JobRegion.RegionID== region.RegionID).ToList();
+            return _context.JobSet.Where(j => j.JobCostCentre == costCentre.CostCentreCode).ToList();
         }
 
         public Job Get(int bookID)

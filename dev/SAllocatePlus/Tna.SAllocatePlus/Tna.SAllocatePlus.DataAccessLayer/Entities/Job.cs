@@ -24,8 +24,12 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
         public TimeSpan? JobTime { get; set; }
         public int StaffRequired { get; set; }
         public string JobDetails { get; set; }
-        public virtual Staff JobSupervisor { get; set; }
-        public virtual Region JobRegion { get; set; }
+        [ForeignKey("CostCentre")]
+        public string JobCostCentre { get; set; }
+        [ForeignKey("Supervisor")]
+        public int? JobSupervisor { get; set; }
+        public virtual Staff Supervisor { get; set; }
+        public virtual CostCentre CostCentre { get; set; }
         public virtual List<JobStaff> JobStaffList { get; set; }
     }
 }

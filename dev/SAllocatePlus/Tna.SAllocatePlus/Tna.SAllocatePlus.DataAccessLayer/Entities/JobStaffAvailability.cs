@@ -15,10 +15,11 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Entities
         [Key, Column(Order = 2), ForeignKey("Staff")]
         public int StaffID { get; set; }
 
-        public Job Job { get; set; }
-
-        public Staff Staff { get; set; }
-        
+        [Required]
         public bool IsAvailable { get; set; }
+
+        public virtual Job Job { get; set; }
+
+        public virtual Staff Staff { get; set; }
     }
 }

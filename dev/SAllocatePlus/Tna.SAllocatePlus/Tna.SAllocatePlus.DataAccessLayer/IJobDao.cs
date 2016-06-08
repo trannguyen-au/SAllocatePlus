@@ -10,7 +10,7 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Dao
     public interface IJobDao
     {
         List<Job> GetAll();
-        List<Job> FindByRegion(Region region);
+        List<Job> FindByRegion(CostCentre region);
         Job Get(int bookID);
         void Create(Job job);
         void Update(Job job);

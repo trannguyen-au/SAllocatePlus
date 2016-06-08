@@ -3,25 +3,21 @@
   <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Job">
     <Position X="6.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAACAAAAAgBAAgAAAAAAQAAAEAAAIAAAgQAEAAAAAA=</HashCode>
+      <HashCode>AAQAKAAAAAgBAAgAAAAAAQAAAEAAAIAAAgQAEAAAAAA=</HashCode>
       <FileName>Entities\Job.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="JobSupervisor" />
-      <Property Name="JobRegion" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Staff">
     <Position X="11.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAEAAACAAAAAAAQAEAAAAAAAAAACiAAAAAgAAAAA=</HashCode>
+      <HashCode>AAQACEAAACAAAAAAAQAEAiAAAAAAAACiAAAAAgAAAAA=</HashCode>
       <FileName>Entities\Staff.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.JobStaff">
     <Position X="9" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAACAAAAAAAAAAAAAAAICACAEAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AgAAAAAACAAAAAAAAAAAAEAAICACAEgAAAAAAEAAAAA=</HashCode>
       <FileName>Entities\JobStaff.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -36,18 +32,25 @@
       <FileName>Entities\JobStaffAvailability.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Region">
-    <Position X="12.75" Y="5.5" Width="1.5" />
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.CostCentre" Collapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\Region.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CostCentre.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.StaffUser">
-    <Position X="3.75" Y="4.5" Width="1.5" />
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.Role" Collapsed="true">
+    <Position X="14.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAACAA=</HashCode>
-      <FileName>Entities\StaffUser.cs</FileName>
+      <HashCode>AAAAAAIAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Entities\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tna.SAllocatePlus.DataAccessLayer.Entities.StaffAccessRight" Collapsed="true">
+    <Position X="11.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAAAAAAAAgAAAAAAAAAwAAAAAAgAAAA=</HashCode>
+      <FileName>Entities\StaffAccessRight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

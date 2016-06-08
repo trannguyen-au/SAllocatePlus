@@ -40,13 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\StaffAccessRight.cs" />
     <Compile Include="IJobDao.cs" />
     <Compile Include="Entities\Job.cs" />
-    <Compile Include="Entities\Region.cs" />
+    <Compile Include="Entities\CostCentre.cs" />
     <Compile Include="Entities\JobStaff.cs" />
     <Compile Include="Entities\JobStaffAvailability.cs" />
     <Compile Include="Entities\Staff.cs" />
-    <Compile Include="Entities\StaffUser.cs" />
     <Compile Include="IJobStaffDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

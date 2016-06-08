@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tna.SAllocatePlus.BusinessLogicServer", "Tna.SAllocatePlus.BusinessLogicServer\Tna.SAllocatePlus.BusinessLogicServer.csproj", "{ECD9398C-CB71-4E02-A713-00E52439392C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{86AE7836-E017-4C17-8CD7-D4F70E40DFE4} = {86AE7836-E017-4C17-8CD7-D4F70E40DFE4}
+		{3B1F8F3B-00CD-454D-8A94-3A75A5AF970A} = {3B1F8F3B-00CD-454D-8A94-3A75A5AF970A}
+		{7F9C434B-FF89-478F-A70D-DC750C0BCDCD} = {7F9C434B-FF89-478F-A70D-DC750C0BCDCD}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tna.SAllocatePlus.CommonShared", "Tna.SAllocatePlus.CommonShared\Tna.SAllocatePlus.CommonShared.csproj", "{3B1F8F3B-00CD-454D-8A94-3A75A5AF970A}"
 EndProject

@@ -48,6 +48,7 @@
     </Compile>
     <Compile Include="Dto\JobStaffDto.cs" />
     <Compile Include="EntityNotFoundException.cs" />
+    <Compile Include="AccessRightsEnum.cs" />
     <Compile Include="JobStageEnum.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7F9C434B-FF89-478F-A70D-DC750C0BCDCD}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TnaSAllocatePlus.DataAccessLayer.EF</RootNamespace>
     <AssemblyName>TnaSAllocatePlus.DataAccessLayer.EF</AssemblyName>
@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>TnaSAllocatePlus.DataAccessLayer.EF.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoPoco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\JobDao.cs" />
-    <Compile Include="Migrations\201605260629482_InitialCreate.cs" />
-    <Compile Include="Migrations\201605260629482_InitialCreate.Designer.cs">
-      <DependentUpon>201605260629482_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201606081425209_Init.cs" />
+    <Compile Include="Migrations\201606081425209_Init.Designer.cs">
+      <DependentUpon>201606081425209_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -80,8 +80,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605260629482_InitialCreate.resx">
-      <DependentUpon>201605260629482_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606081425209_Init.resx">
+      <DependentUpon>201606081425209_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

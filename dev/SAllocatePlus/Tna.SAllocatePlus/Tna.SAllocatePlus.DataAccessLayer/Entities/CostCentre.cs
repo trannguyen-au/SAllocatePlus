@@ -6,11 +6,15 @@ using System.Text;
 
 namespace Tna.SAllocatePlus.DataAccessLayer.Entities
 {
-    public class Region
+    public class CostCentre
     {
         [Key, MaxLength(20)]
-        public string RegionID { get; set; }
+        public string CostCentreCode { get; set; }
 
-        public string RegionName { get; set; }
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        [MaxLength(150)]
+        public string Email { get; set; }
     }
 }
