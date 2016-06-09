@@ -15,8 +15,9 @@ namespace Tna.SAllocatePlus.ClientServices
     public interface IJobService
     {
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByRegion", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByRegionResponse")]
-        Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByRegion(string regionName);
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByCostCentre", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByCostCentreRespo" +
+            "nse")]
+        Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByCostCentre(string regionName);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetStaffListForJob", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetStaffListForJobRespon" +
             "se")]
@@ -57,9 +58,9 @@ namespace Tna.SAllocatePlus.ClientServices
         {
         }
 
-        public Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByRegion(string regionName)
+        public Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByCostCentre(string regionName)
         {
-            return base.Channel.GetJobsByRegion(regionName);
+            return base.Channel.GetJobsByCostCentre(regionName);
         }
 
         public Tna.SAllocatePlus.CommonShared.Dto.JobStaffDto[] GetStaffListForJob(int bookID)

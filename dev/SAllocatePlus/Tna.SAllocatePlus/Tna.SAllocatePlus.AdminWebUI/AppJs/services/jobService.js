@@ -4,11 +4,11 @@
     angular.module('tna.sap.services')
     .factory('jobService', ['ajaxHelper', '$q', function (ajaxHelper, $q) {
         return {
-            getJobsForRegion : getJobsForRegion
+            getJobsForCostCentre: getJobsForCostCentre
         }
 
-        function getJobsForRegion(region) {
-
+        function getJobsForCostCentre(costCentre) {
+            return ajaxHelper.get(resourceUrl.jobApi + "?costCentre=" + costCentre, "getJobsForCostCentre");
         }
     }]);
 })();

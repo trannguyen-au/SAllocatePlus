@@ -7,19 +7,20 @@ using Tna.SAllocatePlus.ClientServices;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class JobController : Controller
     {
         JobServiceClient _jobServiceClient;
 
         public JobController()
         {
-            _jobServiceClient = new JobServiceClient("JobServiceEndPoint");
+            _jobServiceClient = ServiceFactory.CreateJobServiceClient();
         }
 
         // GET: Job
         public ActionResult Index()
         {
-            var jobList = _jobServiceClient.GetJobsByRegion("AU-VIC");
+            var jobList = _jobServiceClient.GetJobsByCostCentre("AU-VIC");
 
             return View(jobList);
         }

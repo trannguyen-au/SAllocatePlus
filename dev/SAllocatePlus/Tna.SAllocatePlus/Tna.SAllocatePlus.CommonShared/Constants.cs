@@ -8,7 +8,7 @@ namespace Tna.SAllocatePlus.CommonShared
 {
     public class Constants
     {
-        public struct RoleEnum {
+        public struct RoleValue {
             public const string Administrator = "Administrator";
             public const string Employee = "Employee";
         }

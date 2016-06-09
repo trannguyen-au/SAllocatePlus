@@ -33,11 +33,11 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
             foreach (var job in queryResult)
             {
                 var dto = new JobDto();
-                job.MergeTo(dto, "JobStaffList", "JobSupervisor", "JobRegion");
+                job.MergeTo(dto, "JobStaffList", "JobSupervisor", "JobCostCentre");
+                dto.JobCostCentre = job.CostCentre.CostCentreCode;
                 if (job.JobSupervisor != null)
                 {
                     dto.SupervisorName = string.Join(" ", job.Supervisor.FirstName, job.Supervisor.SurName);
-                    dto.JobRegion = job.JobCostCentre;
                 }
 
                 result.Add(dto);

@@ -73,10 +73,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AccountService.svc" />
     <Content Include="JobService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.svc.cs">
+      <DependentUpon>AccountService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IAccountService.cs" />
     <Compile Include="JobService.svc.cs">
       <DependentUpon>JobService.svc</DependentUpon>
     </Compile>

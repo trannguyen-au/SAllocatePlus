@@ -31,7 +31,7 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
         [DataMember]
         public string SupervisorName { get; set; }
         [DataMember]
-        public string JobRegion { get; set; }
+        public string JobCostCentre { get; set; }
         [DataMember]
         public virtual List<JobStaffDto> JobStaffList { get; set; }
     }

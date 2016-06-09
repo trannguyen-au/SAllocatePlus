@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\JobDao.cs" />
+    <Compile Include="Dao\StaffDao.cs" />
     <Compile Include="Migrations\201606081425209_Init.cs" />
     <Compile Include="Migrations\201606081425209_Init.Designer.cs">
       <DependentUpon>201606081425209_Init.cs</DependentUpon>

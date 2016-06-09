@@ -15,10 +15,22 @@ namespace Tna.SAllocatePlus.AdminWebUI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "JobApi",
+                routeTemplate: "api/Job/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // only support Json Formater
+            if (config.Formatters.Contains(config.Formatters.XmlFormatter))
+                config.Formatters.Remove(config.Formatters.XmlFormatter);
+            if (!config.Formatters.Contains(config.Formatters.JsonFormatter))
+                config.Formatters.Add(config.Formatters.JsonFormatter);
         }
     }
 }

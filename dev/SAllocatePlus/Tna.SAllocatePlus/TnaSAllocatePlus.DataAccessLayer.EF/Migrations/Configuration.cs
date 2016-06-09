@@ -101,13 +101,13 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
         {
             var allStaff = context.StaffSet.ToList();
             var allRoles = context.RoleSet.ToList();
-            var adminRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleEnum.Administrator);
+            var adminRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleValue.Administrator);
 
             adminRole.StaffList = new List<Staff>();
             adminRole.StaffList.Add(context.StaffSet.FirstOrDefault(u => u.Username == "werynguyen"));
             adminRole.StaffList.Add(context.StaffSet.FirstOrDefault(u => u.Username == "nguyennt"));
 
-            var employeeRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleEnum.Employee);
+            var employeeRole = allRoles.FirstOrDefault(r => r.RoleName == Constants.RoleValue.Employee);
             employeeRole.StaffList = new List<Staff>();
             employeeRole.StaffList.AddRange(allStaff);
 
@@ -119,12 +119,12 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
         {
             context.RoleSet.AddOrUpdate(r => r.RoleName, new Role
             {
-                RoleName = Constants.RoleEnum.Administrator
+                RoleName = Constants.RoleValue.Administrator
             });
 
             context.RoleSet.AddOrUpdate(r => r.RoleName, new Role
             {
-                RoleName = Constants.RoleEnum.Employee
+                RoleName = Constants.RoleValue.Employee
             });
 
             context.SaveChanges();
@@ -143,6 +143,7 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
 
             foreach (var region in regionList)
             {
+                
                 context.CostCentreSet.AddOrUpdate(r=>r.CostCentreCode, region);
                 context.SaveChanges();
             }

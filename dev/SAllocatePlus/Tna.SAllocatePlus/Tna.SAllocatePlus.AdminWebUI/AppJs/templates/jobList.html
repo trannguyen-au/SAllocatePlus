@@ -1,11 +1,23 @@
 <p>
-    <a href="#/Create" class="btn btn-default">Create new</a>
+    <a href="#/create" class="btn btn-default">Create new</a>
 </p>
+
+<div class="well well-sm">
+    <div class="form form-inline">
+        <select class="form-control" ng-model="jl.listFilter.JobCostCentre" ng-options="cc as cc for cc in jl.costCentreList">
+            <option value="">All</option>
+        </select>
+        <button class="btn btn-default" ng-click="jl.showJob()">Show job</button>
+
+    </div>
+    
+</div>
+
 <table class="table wn-table table-clickable">
     <thead>
         <tr>
             <th>
-                Region
+                CostCentre
             </th>
             <th>
                 BookID
@@ -29,37 +41,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
+        <tr ng-repeat="job in jl.jobList">
+            <td ng-bind="job.JobCostCentre"></td>
+            <td ng-bind="job.BookID"></td>
+            <td ng-bind="job.SiteName"></td>
+            <td ng-bind="job.SiteAddress"></td>
+            <td ng-bind="job.JobDate | date"></td>
+            <td ng-bind="job.JobTime | time"></td>
+            <td><span class="badge" ng-bind="job.StaffRequired"></span></td>
             <td>
                 <button class="btn btn-action btn-default">Edit</button>
                 <button class="btn btn-action">Send message</button>

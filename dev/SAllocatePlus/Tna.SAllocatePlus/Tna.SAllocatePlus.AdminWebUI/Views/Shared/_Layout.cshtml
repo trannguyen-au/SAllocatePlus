@@ -10,6 +10,8 @@
     <link href="~/Scripts/lib/angular/angular-csp.css" rel="stylesheet" />
     <link href="~/Scripts/lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
     <link href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/lib/ngDatepicker/src/css/ngDatepicker.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,10 +27,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Staffs", "About", "Home")</li>
-                    <li>@Html.ActionLink("Jobs", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Staffs", "Index", "Staff")</li>
+                    <li>@Html.ActionLink("Jobs", "Index", "Job")</li>
                 </ul>
+
+                @{
+                    if (User != null && User.Identity.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                        </ul>
+                    }
+                }
             </div>
+
+            
         </div>
     </div>
     <div class="container-fluid body-content">
@@ -44,10 +57,21 @@
     <script src="~/Scripts/lib/moment/min/moment.min.js"></script>
     <script src="~/Scripts/lib/pace/pace.min.js"></script>
     <script src="~/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/lib/ngDatepicker/src/js/ngDatepicker.min.js"></script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     
+    <script>
+    var resourceUrl = {
+        jobApi: '/api/Job',
+        userApi: '/api/User',
+        costCentreApi: '/api/CostCentre',
+        staffApi: '/api/Staff'
+    }
+    </script>
+
+
 
     @RenderSection("scripts", required: false)
 </body>

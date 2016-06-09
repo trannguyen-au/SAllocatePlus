@@ -47,6 +47,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dto\JobStaffDto.cs" />
+    <Compile Include="Dto\AccessRightsDto.cs" />
+    <Compile Include="Dto\ResetPasswordRequestDto.cs" />
+    <Compile Include="Dto\StaffAccountDto.cs" />
+    <Compile Include="EncryptionService.cs" />
     <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="AccessRightsEnum.cs" />
     <Compile Include="JobStageEnum.cs" />
