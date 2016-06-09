@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Tna.SAllocatePlus.ClientServices;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
-    [Authorize(Roles="Administrator")]
-    public class JobController : Controller
+    public class StaffController : Controller
     {
-        // GET: Job
+        // GET: Staff
         public ActionResult Index()
         {
             return View();

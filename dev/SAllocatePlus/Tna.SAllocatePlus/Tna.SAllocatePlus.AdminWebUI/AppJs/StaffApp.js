@@ -1,12 +1,12 @@
-(function () {
+﻿(function () {
     'use strict';
 
     angular.module('tna.sap.services', ['wn.ajax-helper']);
     angular.module('tna.sap.controllers', ['tna.sap.services']);
-    
+
 
     angular
-        .module('jobApp', ['ngRoute', 'wn.ajax-helper',
+        .module('staffApp', ['ngRoute', 'wn.ajax-helper',
             'tna.sap.controllers', 'tna.sap.services', 'ui.bootstrap', 'mgcrea.ngStrap'])
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.when('/', {

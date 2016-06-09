@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Job listing";
+    ViewBag.Title = "Staff listing";
 }
 
 <div ng-app="jobApp">
-    <h2 ng-bind="AppTitle">Job Listing</h2>
+    <h2 ng-bind="AppTitle">Staff Listing</h2>
 
     <div ng-view></div>
 </div>
@@ -11,12 +11,12 @@
 @section scripts {
     <script src="~/AppJs/helpers/ajax-helper.js"></script>
 
-    <script src="~/AppJs/jobApp.js"></script>
+    <script src="~/AppJs/staffApp.js"></script>
 
     <script src="~/AppJs/services/userService.js"></script>
     <script src="~/AppJs/services/jobService.js"></script>
     <script src="~/AppJs/services/staffService.js"></script>
 
-    <script src="~/AppJs/controllers/jobDetailCtrl.js"></script>
-    <script src="~/AppJs/controllers/jobListCtrl.js"></script>
+    <script src="~/AppJs/controllers/staffDetailCtrl.js"></script>
+    <script src="~/AppJs/controllers/staffListCtrl.js"></script>
 }

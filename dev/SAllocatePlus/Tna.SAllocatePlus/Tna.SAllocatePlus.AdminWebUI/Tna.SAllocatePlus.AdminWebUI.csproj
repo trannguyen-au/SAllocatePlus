@@ -129,6 +129,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,6 +142,7 @@
   <ItemGroup>
     <Content Include="AppJs\controllers\jobDetailCtrl.js" />
     <Content Include="AppJs\controllers\jobListCtrl.js" />
+    <Content Include="AppJs\controllers\staffCtrl.js" />
     <Content Include="AppJs\helpers\ajax-helper.js" />
     <Content Include="AppJs\jobApp.js" />
     <Content Include="AppJs\services\jobService.js" />
@@ -148,6 +150,7 @@
     <Content Include="AppJs\services\userService.js" />
     <Content Include="AppJs\templates\detail.html" />
     <Content Include="AppJs\templates\jobList.html" />
+    <Content Include="AppJs\templates\staffList.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\dist\css\bootstrap-theme.css" />
@@ -163,6 +166,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="sass\bundles.css" />
+    <None Include="sass\_text.scss" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="sass\bundles.css.map" />
@@ -284,6 +288,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

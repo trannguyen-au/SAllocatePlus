@@ -1,24 +1,24 @@
-<p>
-    <a href="#/create" class="btn btn-default">Create new</a>
+﻿<p>
+    <a href="#/staffCreate" class="btn btn-default">Create new</a>
 </p>
 
 <div class="well well-sm">
     <div class="form form-inline">
-        <select class="form-control" ng-model="jl.listFilter.JobCostCentre" ng-options="cc as cc for cc in jl.costCentreList">
+        <select class="form-control" ng-model="listFilter.JobCostCentre" ng-options="cc as cc for cc in jl.costCentreList">
             <option value="">All</option>
         </select>
-        <button class="btn btn-default" ng-click="jl.showJob()">Show job</button>
+        <button class="btn btn-default" ng-click="showStaff()">Show staff</button>
 
-        <button class="btn btn-primary" ng-click="jl.sendEmail()">Send emails</button>
+        
     </div>
-    
+
 </div>
 
 <table class="table wn-table table-clickable">
     <thead>
         <tr>
             <th style="width:50px">
-                
+
             </th>
             <th>
                 Cost centre

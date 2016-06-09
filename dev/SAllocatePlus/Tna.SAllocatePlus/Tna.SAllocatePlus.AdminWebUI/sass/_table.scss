@@ -48,6 +48,10 @@ table.wn-table {
                 visibility:visible;
             }
         }
+
+        > tr.selected > td {
+            background: $wnTableSelectedRowColor;
+        }
     }
 
     &.table-clickable {

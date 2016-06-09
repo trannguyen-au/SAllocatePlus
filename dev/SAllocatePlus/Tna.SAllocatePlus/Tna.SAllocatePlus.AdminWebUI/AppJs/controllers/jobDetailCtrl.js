@@ -3,7 +3,7 @@
 
     angular
         .module('tna.sap.controllers')
-    .controller('jobDetailCtrl', ['$scope', '$rootScope', 'userService', 'staffService', '$timeout', function ($scope, $rootScope, userService, staffService, $timeout) {
+    .controller('jobDetailCtrl', ['$scope', '$rootScope', 'userService', 'staffService', 'jobService', '$timeout', function ($scope, $rootScope, userService, staffService,jobService, $timeout) {
         $rootScope.AppTitle = "Job Detail";
 
         $scope.jobStateList = [];
@@ -33,12 +33,21 @@
             SiteName: '',
             SiteAddress: '',
             JobStage: 1,
-            JobDate: moment().format('Y-MM-dd'),
+            JobDate: moment().format('Y-MM-D'),
             JobTime: '',
             StaffRequired: 1,
             JobDetails: "",
             JobCostCentre: '',
             JobSupervisor: ''
+        };
+
+        $scope.saveModel = function () {
+            jobService.saveJobDetail($scope.model)
+            .then(function (result) {
+                console.log(result);
+            }, function (error) {
+                console.log(error);
+            });
         };
 
         // load staff list based on value of cost centre

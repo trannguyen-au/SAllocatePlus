@@ -31,5 +31,16 @@ namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
         {
             return Ok(client.GetJobsByCostCentre(costCentre).ToList());
         }
+
+        
+        public IHttpActionResult Post([FromBody]JobDto job)
+        {
+            return Ok(job);
+        }
+
+        public IHttpActionResult Post([FromUri]int id,[FromBody]JobDto job)
+        {
+            return Ok(job);
+        }
     }
 }
