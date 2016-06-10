@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccountService.svc" />
+    <Content Include="CommonDataService.svc" />
     <Content Include="JobService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -81,7 +82,12 @@
     <Compile Include="AccountService.svc.cs">
       <DependentUpon>AccountService.svc</DependentUpon>
     </Compile>
+    <Compile Include="CommonDataService.svc.cs">
+      <DependentUpon>CommonDataService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EmailService.cs" />
     <Compile Include="IAccountService.cs" />
+    <Compile Include="ICommonDataService.cs" />
     <Compile Include="JobService.svc.cs">
       <DependentUpon>JobService.svc</DependentUpon>
     </Compile>

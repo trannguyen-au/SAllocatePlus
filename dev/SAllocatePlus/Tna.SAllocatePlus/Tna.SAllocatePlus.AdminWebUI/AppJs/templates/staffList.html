@@ -1,13 +1,15 @@
-﻿<p>
+﻿<h2 ng-bind="AppTitle">Staff Listing</h2>
+
+<p>
     <a href="#/staffCreate" class="btn btn-default">Create new</a>
 </p>
 
 <div class="well well-sm">
     <div class="form form-inline">
-        <select class="form-control" ng-model="listFilter.JobCostCentre" ng-options="cc as cc for cc in jl.costCentreList">
+        <select class="form-control" ng-model="listFilter.CostCentre" ng-options="cc as cc for cc in costCentreList">
             <option value="">All</option>
         </select>
-        <button class="btn btn-default" ng-click="showStaff()">Show staff</button>
+        <a class="btn btn-default" href="#/{{listFilter.CostCentre}}">Show staff</a>
 
         
     </div>
@@ -17,48 +19,41 @@
 <table class="table wn-table table-clickable">
     <thead>
         <tr>
-            <th style="width:50px">
-
-            </th>
             <th>
                 Cost centre
             </th>
             <th>
-                BookID
+                Name
             </th>
             <th>
-                Site name
+                Email
             </th>
             <th>
-                Address
+                Mobile
             </th>
             <th>
-                Job date
-            </th>
-            <th>
-                Job time
-            </th>
-            <th>
-                Staff required
+                Active
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="job in jl.jobList" ng-class="{'selected':job.selected}">
+        <tr ng-repeat="staff in staffList" ng-click="editStaff(staff.StaffID)">
+            <td ng-bind="staff.StaffCostCentre"></td>
+            <td ng-bind="staff.FirstName+' '+staff.SurName"></td>
+            <td ng-bind="staff.Email"></td>
+            <td ng-bind="staff.Mobile"></td>
             <td>
-                <button class="btn" ng-class="job.selected?'btn-primary':'btn-default'" ng-click="job.selected=!job.selected"><i class="fa fa-check" ng-class="{'invisible':!job.selected}"></i></button>
+                <i class="fa fa-check text-blue" ng-show="staff.Active"></i>
+                <i class="fa fa-remove text-red" ng-show="!staff.Active"></i>
             </td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.JobCostCentre"></td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.BookID"></td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.SiteName"></td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.SiteAddress"></td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.JobDate | date"></td>
-            <td ng-click="job.selected=!job.selected" ng-bind="job.JobTime | time"></td>
+            <td ng-bind="job.JobTime | time"></td>
             <td ng-click="job.selected=!job.selected"><span class="badge" ng-bind="job.StaffRequired"></span></td>
             <td>
-                <button class="btn btn-action btn-default">Edit</button>
-                <button class="btn btn-action">Send message</button>
+                <a class="btn btn-action btn-default"
+                   href="#/edit/{{listFilter.CostCentre}}/{{staff.StaffID}}"
+                   bs-tooltip title="View detail" data-animation="am-flip-x"><i class="fa fa-search"></i></a>
+                <button class="btn btn-action" ng-click="sendMessage($event)" bs-tooltip title="Send email" data-animation="am-flip-x"><i class="fa fa-envelope"></i></button>
             </td>
         </tr>
 

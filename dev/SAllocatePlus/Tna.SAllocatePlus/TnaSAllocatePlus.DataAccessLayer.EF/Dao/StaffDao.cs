@@ -47,5 +47,11 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Dao
         {
             return _context.StaffSet.Where(s => s.StaffCostCentre == costCentre && s.Active).ToList();
         }
+
+
+        public List<Staff> GetStaffsByIdList(List<int> list)
+        {
+            return _context.StaffSet.Where(s => list.Contains(s.StaffID)).ToList();
+        }
     }
 }

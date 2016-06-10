@@ -12,6 +12,12 @@ namespace Tna.SAllocatePlus.AdminWebUI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "GetEmailTemplate",
+                url: "Job/GetEmailTemplate/{CostCentre}",
+                defaults: new { controller = "Job", action = "GetEmailTemplate" }
+            );
 
             routes.MapRoute(
                 name: "Default",

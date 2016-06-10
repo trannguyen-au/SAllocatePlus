@@ -19,5 +19,7 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
 
         [OperationContract]
         List<JobStaffDto> GetStaffListForJob(int bookID);
+        [OperationContract]
+        void SendJobEmail(SendEmailRequestDto request);
     }
 }

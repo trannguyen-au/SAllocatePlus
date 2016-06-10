@@ -1,24 +1,25 @@
 (function () {
     'use strict';
 
-    angular.module('tna.sap.services', ['wn.ajax-helper']);
-    angular.module('tna.sap.controllers', ['tna.sap.services']);
-    
-
     angular
-        .module('jobApp', ['ngRoute', 'wn.ajax-helper',
+        .module('jobApp', ['ngRoute', 'wn.ajax-helper', 'tna.sap.common',
             'tna.sap.controllers', 'tna.sap.services', 'ui.bootstrap', 'mgcrea.ngStrap'])
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.when('/', {
                 templateUrl: '/AppJs/templates/jobList.html',
-                controller: 'jobListCtrl',
-                controllerAs: 'jl'
-            }).when('/create', {
-                templateUrl: '/AppJs/templates/detail.html',
-                controller: 'jobDetailCtrl'
-            }).when('/edit', {
+                controller: 'jobListCtrl'
+            }).when('/:cc', {
+                templateUrl: '/AppJs/templates/jobList.html',
+                controller: 'jobListCtrl'
+            }).when('/create/:cc', {
                 templateUrl: '/AppJs/templates/jobDetail.html',
                 controller: 'jobDetailCtrl'
+            }).when('/edit/:cc/:id', {
+                templateUrl: '/AppJs/templates/jobDetail.html',
+                controller: 'jobDetailCtrl'
+            }).when('/sendEmail/:cc', {
+                templateUrl: '/AppJs/templates/jobSendEmail.html',
+                controller: 'jobSendEmailCtrl'
             })
 
             .otherwise({
@@ -48,19 +49,6 @@
     .run(['$rootScope', function ($rootScope) {
         $rootScope.AppTitle = 'Job App';
     }])
-    .filter('date', function () {
-        return function (dateData) {
-            return moment(dateData).format('Y-MM-DD');
-        }
-    })
-    .filter('time', function () {
-        return function (timeData) {
-            if (timeData.length == 8) {
-                return timeData.substr(0, 5);
-            }
-            return timeData;
-        }
-    })
     ;
 
 })();

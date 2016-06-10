@@ -52,5 +52,11 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Dao
         {
             _context.JobSet.RemoveRange(_context.JobSet.Where(j => j.BookID == job.BookID));
         }
+
+
+        public List<Job> GetJobsByIdList(List<int> list)
+        {
+            return _context.JobSet.Where(j => list.Contains(j.BookID)).ToList();
+        }
     }
 }

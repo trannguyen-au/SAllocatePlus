@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         

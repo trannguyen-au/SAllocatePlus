@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Tna.SAllocatePlus.BusinessLogicServer.CommonDataService" CodeBehind="CommonDataService.svc.cs" %>

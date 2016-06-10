@@ -47,7 +47,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Staff Allocate Plus - Nguyen Tran Nguyen (6586880)</p>
         </footer>
     </div>
     <script src="~/Scripts/lib/angular/angular.min.js"></script>
@@ -63,13 +63,40 @@
     @Scripts.Render("~/bundles/bootstrap")
     
     <script>
-    var resourceUrl = {
-        jobApi: '/api/Job',
-        userApi: '/api/User',
-        costCentreApi: '/api/CostCentre',
-        staffApi: '/api/Staff'
+        var resourceUrl = {
+            jobResource: '/Job',
+            jobApi: '/api/Job',
+            userApi: '/api/User',
+            costCentreApi: '/api/CostCentre',
+            staffApi: '/api/Staff',
+            roleApi: '/api/Role',
+        };
+
+    function l(data) {
+        console.log(data);
     }
     </script>
+
+    <script src="~/AppJs/helpers/ajax-helper.js"></script>
+    <script src="~/AppJs/angular-common.js"></script>
+
+    <!-- Angular js services -->
+    <script src="~/AppJs/services.js"></script>
+    <script src="~/AppJs/services/userService.js"></script>
+    <script src="~/AppJs/services/jobService.js"></script>
+    <script src="~/AppJs/services/staffService.js"></script>
+
+    <!-- Angular js controllers -->
+    <script src="~/AppJs/controllers.js"></script>
+    <script src="~/AppJs/controllers/jobDetailCtrl.js"></script>
+    <script src="~/AppJs/controllers/jobListCtrl.js"></script>
+    <script src="~/AppJs/controllers/staffDetailCtrl.js"></script>
+    <script src="~/AppJs/controllers/staffListCtrl.js"></script>
+    <script src="~/AppJs/controllers/jobSendEmailCtrl.js"></script>
+
+    <!-- Angular js apps -->
+    <script src="~/AppJs/jobApp.js"></script>
+    <script src="~/AppJs/staffApp.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>

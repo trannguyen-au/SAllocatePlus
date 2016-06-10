@@ -3,12 +3,10 @@
 
     angular
         .module('tna.sap.controllers')
-    .controller('jobListCtrl', ['$scope', '$rootScope', 'jobService', 'userService', function ($scope, $rootScope, jobService, userService) {
+    .controller('jobListCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'jobService', 'userService', function (s, $rootScope, $routeParams,$location, jobService, userService) {
         $rootScope.AppTitle = "Job list";
 
-        var jl = this;
-
-        jl.listFilter = {
+        s.listFilter = {
             JobCostCentre: undefined,
             Keyword: undefined
         };
@@ -16,21 +14,40 @@
         function initData() {
             userService.getCostCentre(true)
             .then(function (result) {
-                jl.costCentreList = result;
+                s.costCentreList = result;
                 console.log(result);
             }, function (error) {
                 console.log(error);
             });
         }
 
-        jl.showJob = function() {
-            jobService.getJobsForCostCentre(jl.listFilter.JobCostCentre)
+        s.showJob = function() {
+            jobService.getJobsForCostCentre(s.listFilter.JobCostCentre)
             .then(function (result) {
-                jl.jobList = result;
+                s.jobList = result;
                 console.log(result);
             }, function (error) {
                 console.log(error);
             });
+        }
+
+        if ($routeParams != null && typeof ($routeParams.cc) != 'undefined') {
+            s.listFilter.JobCostCentre = $routeParams.cc;
+            s.showJob();
+        }
+
+        s.sendEmail = function () {
+            var jobList = s.jobList.filter(function (j) {
+                return j.selected;
+            });
+            if (jobList.length == 0) {
+                alert('Please select a job first');
+                return;
+            }
+
+            $rootScope.SelectedJobs = jobList;
+
+            $location.url('/sendEmail/' + s.listFilter.JobCostCentre);
         }
 
         initData();

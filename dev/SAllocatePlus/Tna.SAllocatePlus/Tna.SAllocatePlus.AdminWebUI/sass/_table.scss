@@ -42,7 +42,8 @@ table.wn-table {
         }
 
 
-        > tr.active > td {
+        > tr.active > td,
+        > tr.active.selected > td {
             background: $wnTableHighlightRowColor;
             .btn-action {
                 visibility:visible;

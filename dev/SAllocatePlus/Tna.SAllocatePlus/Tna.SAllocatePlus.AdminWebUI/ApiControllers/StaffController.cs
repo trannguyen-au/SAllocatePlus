@@ -30,5 +30,17 @@ namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
                 return NotFound();
             }
         }
+
+        public IHttpActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_accountService.GetUserById(id));
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
     }
 }

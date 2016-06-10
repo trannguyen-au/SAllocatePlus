@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class StaffController : Controller
     {
         // GET: Staff

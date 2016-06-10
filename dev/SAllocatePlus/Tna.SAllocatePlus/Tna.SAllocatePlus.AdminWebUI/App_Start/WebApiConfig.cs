@@ -21,6 +21,12 @@ namespace Tna.SAllocatePlus.AdminWebUI
             );
 
             config.Routes.MapHttpRoute(
+                name: "CostCentreApi",
+                routeTemplate: "api/CostCentre/{writeAccess}",
+                defaults: new { writeAccess = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

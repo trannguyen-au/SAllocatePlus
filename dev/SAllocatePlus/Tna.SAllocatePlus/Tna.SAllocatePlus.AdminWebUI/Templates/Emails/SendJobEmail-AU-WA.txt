@@ -1,0 +1,11 @@
+﻿Hi {StaffName},
+
+Please see below the schedule jobs for the comming week and confirm your availability using the staff portal app.
+
+{JobList}
+
+Note: All the job preferences have to be completed before Friday of the current week to secure your roaster allocation.
+
+Thank you,
+
+Human Resource WA Team

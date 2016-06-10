@@ -3,8 +3,13 @@
 
     angular
         .module('tna.sap.controllers')
-    .controller('jobDetailCtrl', ['$scope', '$rootScope', 'userService', 'staffService', 'jobService', '$timeout', function ($scope, $rootScope, userService, staffService,jobService, $timeout) {
+    .controller('jobDetailCtrl', ['$scope', '$rootScope', '$routeParams', 'userService', 'staffService', 'jobService', '$timeout', function ($scope, $rootScope, $routeParams, userService, staffService, jobService, $timeout) {
         $rootScope.AppTitle = "Job Detail";
+
+        $scope.param = {
+            CostCentre: $routeParams.cc,
+            BookID: null
+        };
 
         $scope.jobStateList = [];
         $scope.costCentreList = [];
@@ -49,6 +54,10 @@
                 console.log(error);
             });
         };
+
+        if (typeof ($routeParams.id) != 'undefined') {
+            $scope.param.BookID = $routeParams.id;
+        }
 
         // load staff list based on value of cost centre
         $scope.$watch('model.JobCostCentre', function (newValue, oldValue) {

@@ -1,93 +1,131 @@
-﻿<p>
-    <a class="btn btn-default">Save</a>
-</p>
+﻿<h2>
+    <a href="#/{{param.CostCentre}}"><i class="glyphicon glyphicon-backward"></i></a> 
+    <span ng-bind="getFullName()"></span>
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="FindWatcher('getStaff').loading"></span>
+</h2>
 
 <div class="well well-sm">
     <div class="form form-inline">
-        <select class="form-control" ng-model="jl.listFilter.JobCostCentre" ng-options="cc as cc for cc in costCentreList">
-            <option value="">All</option>
-        </select>
-        <button class="btn btn-default" ng-click="jl.showJob()">Show job</button>
+        <button class="btn btn-default" ng-click="sendMessage()">Send message</button>
 
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
-        <h3>Job detail</h3>
+        <h3>Staff profile</h3>
         <hr />
         <div class="form form-horizontal">
             <div class="form-group">
-                <label class="col-xs-3 control-label">Job Status</label>
-                <div class="col-sm-6">
-                    <select class="form-control" style="width:250px"
-                            ng-model="model.JobStage"
-                            ng-options="s.id as s.value for s in jobStateList"></select>
+                <label class="col-xs-3 control-label">Staff cost centre</label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="model.StaffCostCentre" ng-options="cc as cc for cc in costCentreList"></select>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-xs-3 control-label">Job cost centre</label>
-                <div class="col-sm-6">
-                    <select class="form-control" ng-model="model.JobCostCentre" ng-options="cc as cc for cc in costCentreList"></select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">Supervisor</label>
-                <div class="col-sm-6">
-                    <select class="form-control" ng-model="model.JobSupervisor" ng-options="cc.StaffID as cc.FirstName+' '+cc.SurName for cc in staffList"></select>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">Site name</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" ng-model="jd.model.SiteName" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">Site address</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" ng-model="jd.model.SiteAddress" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">Job date</label>
-                <div class="col-sm-6">
-                    <div class="input-group">
+                <div class="col-sm-2 form-inline">
+                    <div class="input-group clickable pull-right" ng-class="model.Active?'has-success':''">
+                        <span class="input-group-addon" ng-click="model.Active=!model.Active">Active</span>
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <input type="checkbox" ng-model="model.Active" />
                         </span>
-                        <input type="text" ng-model="model.JobDate" class="form-control">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-time"></i>
-                        </span>
-                        <input type="text" ng-model="model.JobTime" class="form-control">
+                        
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-xs-3 control-label">Staff required</label>
+                <label class="col-xs-3 control-label">Name</label>
+                <div class="col-sm-6 form form-inline">
+                    <div class="input-group">
+                        <span class="input-group-addon">First name</span>
+                        <input type="text" ng-model="model.FirstName" class="form-control" />
+                        <span class="input-group-addon">Surname</span>
+                        <input type="text" ng-model="model.SurName" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">Mobile</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" ng-model="model.StaffRequired" />
+                    <input type="text" class="form-control" ng-model="model.Mobile" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-xs-3 control-label">Job details</label>
+                <label class="col-xs-3 control-label">Email</label>
                 <div class="col-sm-6">
-                    <textarea class="form-control" rows="3" ng-model="model.JobDetails"></textarea>
+                    <input type="text" class="form-control" ng-model="model.Email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-3 control-label">Access Account</label>
+                <div class="col-sm-6 ">
+                    <div class="form form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon">User Name</span>
+                            <input type="text" ng-model="model.Username" readonly="readonly" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning">Change password</button>
+                            </span>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-3"></div>
                 <div class="col-sm-6">
-                    <button class="btn btn-default" ng-click="saveModel()">Save</button>
+                    <button class="btn btn-primary" ng-click="saveModel()">Save</button>
                     
                 </div>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
-        <h3>Availability</h3>
+        <h3>Role access permission</h3>
         <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Role name</th>
+                    <th style="width:20%">Is in role</th>
+                    <th style="width:20%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="role in allRoles">
+                    <td ng-bind="role.RoleName"></td>
+                    <td>
+                        <i class="fa" ng-class="isInRole(role)?'fa-check text-success':'fa-remove text-danger'"></i>
+                    </td>
+                    <td>
+                        <button class="btn btn-info" ng-click="grandRole(role)" ng-show="!isInRole(role)">Grand role</button>
+                        <button class="btn btn-warning" ng-click="revokeRole(role)" ng-show="isInRole(role)">Revoke role</button>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="isAdmin()">
+            <h3>Cost centre access permission</h3>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cost centre</th>
+                        <th>Can access</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cc in allCostCentres">
+                        <td ng-bind="cc.CostCentreCode"></td>
+                        <td><i class="fa" ng-class="canAccess(cc)?'fa-check text-success':'fa-remove text-danger'"></i></td>
+                        <td>
+                            <button class="btn btn-info" ng-click="grandAccess(role)" ng-show="!canAccess(cc)">Grand access</button>
+                            <button class="btn btn-warning" ng-click="revokeAccess(role)" ng-show="canAccess(cc)">Revoke access</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

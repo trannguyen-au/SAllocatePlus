@@ -43,12 +43,15 @@
     <Compile Include="Constants.cs" />
     <Compile Include="CopyOptionAttribute.cs" />
     <Compile Include="CustomAttributeExtensions.cs" />
+    <Compile Include="Dto\CostCentreDto.cs" />
     <Compile Include="Dto\JobDto.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dto\JobStaffDto.cs" />
     <Compile Include="Dto\AccessRightsDto.cs" />
     <Compile Include="Dto\ResetPasswordRequestDto.cs" />
+    <Compile Include="Dto\RoleDto.cs" />
+    <Compile Include="Dto\SendEmailRequestDto.cs" />
     <Compile Include="Dto\StaffAccountDto.cs" />
     <Compile Include="EncryptionService.cs" />
     <Compile Include="EntityNotFoundException.cs" />

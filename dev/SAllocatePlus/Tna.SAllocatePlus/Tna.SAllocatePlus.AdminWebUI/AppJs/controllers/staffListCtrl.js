@@ -3,34 +3,44 @@
 
     angular
         .module('tna.sap.controllers')
-    .controller('staffListCtrl', ['$scope', '$rootScope', 'staffService', 'userService', function ($scope, $rootScope, staffService, userService) {
-        $rootScope.AppTitle = "Job list";
-
-        var jl = this;
-
-        jl.listFilter = {
-            JobCostCentre: undefined,
+    .controller('staffListCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'staffService', 'userService', function (s, $rootScope, $routeParams, $location, staffService, userService) {
+        s.listFilter = {
+            CostCentre: undefined,
             Keyword: undefined
         };
 
         function initData() {
             userService.getCostCentre(true)
             .then(function (result) {
-                jl.costCentreList = result;
-                console.log(result);
+                s.costCentreList = result;
+                l(result);
             }, function (error) {
-                console.log(error);
+                l(error);
+            });
+
+            if ($routeParams != null && typeof ($routeParams.cc) != 'undefined') {
+                s.listFilter.CostCentre = $routeParams.cc;
+                s.showStaff();
+            }
+        }
+
+        s.showStaff = function () {
+            staffService.getStaffsForCostCentre(s.listFilter.CostCentre)
+            .then(function (result) {
+                s.staffList = result;
+                l(result);
+            }, function (error) {
+                l(error);
             });
         }
 
-        jl.showJob = function () {
-            jobService.getJobsForCostCentre(jl.listFilter.JobCostCentre)
-            .then(function (result) {
-                jl.jobList = result;
-                console.log(result);
-            }, function (error) {
-                console.log(error);
-            });
+        s.editStaff = function (id) {
+            $location.url("/edit/" + s.listFilter.CostCentre + "/" + id);
+        }
+
+        s.sendMessage = function ($event) {
+            alert('ok');
+            $event.stopPropagation();
         }
 
         initData();

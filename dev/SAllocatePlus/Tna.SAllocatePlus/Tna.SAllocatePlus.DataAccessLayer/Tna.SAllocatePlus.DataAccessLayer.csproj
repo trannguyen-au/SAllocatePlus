@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\StaffAccessRight.cs" />
+    <Compile Include="ICommonDataDao.cs" />
     <Compile Include="IJobDao.cs" />
     <Compile Include="Entities\Job.cs" />
     <Compile Include="Entities\CostCentre.cs" />

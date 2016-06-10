@@ -10,6 +10,7 @@ using Tna.SAllocatePlus.CommonShared;
 using Tna.SAllocatePlus.DataAccessLayer.Dao;
 using Tna.SAllocatePlus.DataAccessLayer.Entities;
 using TnaSAllocatePlus.DataAccessLayer.EF.Dao;
+using Tna.SAllocatePlus.DataAccessLayer;
 
 
 namespace Tna.SAllocatePlus.BusinessLogicServer
@@ -17,10 +18,12 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
     public class JobService : IJobService
     {
         IJobDao _jobDao = null;
+        IStaffDao _staffDao = null;
 
         public JobService()
         {
             _jobDao = new JobDao();
+            _staffDao = new StaffDao();
         }
         public List<JobDto> GetJobsByCostCentre(string costCentre)
         {
@@ -64,6 +67,15 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
             }
 
             return staffList;
+        }
+
+        public void SendJobEmail(SendEmailRequestDto request)
+        {
+            var jobList = _jobDao.GetJobsByIdList(request.JobList);
+            var staffList = _staffDao.GetStaffsByIdList(request.StaffList);
+
+            // send email to staff
+            // update jobs with sent flag
         }
     }
 }

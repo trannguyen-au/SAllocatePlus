@@ -18,6 +18,10 @@ namespace Tna.SAllocatePlus.AdminWebUI
             return new AccountServiceClient("AccountServiceEndPoint");
         }
 
+        public static CommonDataServiceClient CreateCommonDataServiceClient()
+        {
+            return new CommonDataServiceClient("CommonDataServiceEndPoint");
+        }
 
     }
 }

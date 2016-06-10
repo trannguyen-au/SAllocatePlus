@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountServiceClient.cs" />
+    <Compile Include="CommonDataServiceClient.cs" />
     <Compile Include="JobServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

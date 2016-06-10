@@ -15,5 +15,7 @@ namespace Tna.SAllocatePlus.DataAccessLayer.Dao
         void Create(Job job);
         void Update(Job job);
         void Delete(Job job);
+
+        List<Job> GetJobsByIdList(List<int> list);
     }
 }

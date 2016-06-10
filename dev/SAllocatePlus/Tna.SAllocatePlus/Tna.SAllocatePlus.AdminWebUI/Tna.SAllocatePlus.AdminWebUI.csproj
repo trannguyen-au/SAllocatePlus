@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\CostCentreController.cs" />
     <Compile Include="ApiControllers\JobController.cs" />
+    <Compile Include="ApiControllers\RoleController.cs" />
     <Compile Include="ApiControllers\StaffController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -140,18 +141,24 @@
     <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppJs\angular-common.js" />
+    <Content Include="AppJs\controllers.js" />
     <Content Include="AppJs\controllers\jobDetailCtrl.js" />
     <Content Include="AppJs\controllers\jobListCtrl.js" />
+    <Content Include="AppJs\controllers\jobSendEmailCtrl.js" />
+    <Content Include="AppJs\services.js" />
     <Content Include="AppJs\controllers\staffDetailCtrl.js" />
     <Content Include="AppJs\controllers\staffListCtrl.js" />
     <Content Include="AppJs\helpers\ajax-helper.js" />
     <Content Include="AppJs\jobApp.js" />
+    <Content Include="AppJs\services\commonService.js" />
     <Content Include="AppJs\services\jobService.js" />
     <Content Include="AppJs\services\staffService.js" />
     <Content Include="AppJs\services\userService.js" />
     <Content Include="AppJs\StaffApp.js" />
+    <Content Include="AppJs\templates\jobSendEmail.html" />
     <Content Include="AppJs\templates\staffDetail.html" />
-    <Content Include="AppJs\templates\detail.html" />
+    <Content Include="AppJs\templates\jobDetail.html" />
     <Content Include="AppJs\templates\jobList.html" />
     <Content Include="AppJs\templates\staffList.html" />
     <Content Include="Content\bootstrap.css" />
@@ -274,6 +281,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\Emails\SendJobEmail-AU-SAT.txt" />
+    <Content Include="Templates\Emails\SendJobEmail-AU-QLD.txt" />
+    <Content Include="Templates\Emails\SendJobEmail-AU-WA.txt" />
+    <Content Include="Templates\Emails\SendJobEmail-AU-VIC.txt" />
+    <Content Include="Templates\Emails\SendJobEmail-AU-NSW.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,3 +1,25 @@
+.glyphicon-refresh-animate,
+.spin-animate {
+  -animation: spin .7s infinite linear;
+  -ms-animation: spin .7s infinite linear;
+  -webkit-animation: spinw .7s infinite linear;
+  -moz-animation: spinm .7s infinite linear; }
+
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg); }
+  to {
+    transform: scale(1) rotate(360deg); } }
+@-webkit-keyframes spinw {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spinm {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
 table.wn-table {
   width: 100%;
   max-width: 100%;
@@ -25,10 +47,14 @@ table.wn-table {
         left: 0px;
         top: 0px;
         width: 5px; }
-  table.wn-table > tbody > tr.active > td {
+  table.wn-table > tbody > tr.active > td,
+  table.wn-table > tbody > tr.active.selected > td {
     background: #eee; }
-    table.wn-table > tbody > tr.active > td .btn-action {
+    table.wn-table > tbody > tr.active > td .btn-action,
+    table.wn-table > tbody > tr.active.selected > td .btn-action {
       visibility: visible; }
+  table.wn-table > tbody > tr.selected > td {
+    background: #fffac0; }
   table.wn-table.table-clickable > tbody > tr:hover > td,
   table.wn-table.table-clickable > tr:hover > td {
     background: #eee; }
@@ -46,5 +72,11 @@ table.wn-table {
   table.wn-table label,
   table.wn-table label.control-label {
     font-weight: normal; }
+
+.faded {
+  opacity: 0.1; }
+
+.clickable {
+  cursor: pointer; }
 
 /*# sourceMappingURL=bundles.css.map */

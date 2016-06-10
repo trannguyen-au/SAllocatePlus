@@ -1,15 +1,18 @@
-<p>
-    <a href="#/create" class="btn btn-default">Create new</a>
-</p>
+<h2>
+    Job Listing  <a href="#/create" class="btn btn-default">Create new</a>
+</h2>
 
 <div class="well well-sm">
     <div class="form form-inline">
-        <select class="form-control" ng-model="jl.listFilter.JobCostCentre" ng-options="cc as cc for cc in jl.costCentreList">
-            <option value="">All</option>
+        <select class="form-control" ng-model="listFilter.JobCostCentre" ng-options="cc as cc for cc in costCentreList">
+            <option value="">Please select</option>
         </select>
-        <button class="btn btn-default" ng-click="jl.showJob()">Show job</button>
+        <a class="btn btn-primary" href="#/{{listFilter.JobCostCentre}}">Show job <i class="glyphicon glyphicon-refresh spin-animate" ng-show="FindWatcher('getJobsForCostCentre').loading"></i></a>
 
-        <button class="btn btn-primary" ng-click="jl.sendEmail()">Send emails</button>
+        <div class="pull-right">
+            <button class="btn btn-primary" ng-click="sendEmail()">Send emails</button>
+        </div>
+        
     </div>
     
 </div>
@@ -45,7 +48,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="job in jl.jobList" ng-class="{'selected':job.selected}">
+        <tr ng-repeat="job in jobList" ng-class="{'selected':job.selected}">
             <td>
                 <button class="btn" ng-class="job.selected?'btn-primary':'btn-default'" ng-click="job.selected=!job.selected"><i class="fa fa-check" ng-class="{'invisible':!job.selected}"></i></button>
             </td>
@@ -57,7 +60,7 @@
             <td ng-click="job.selected=!job.selected" ng-bind="job.JobTime | time"></td>
             <td ng-click="job.selected=!job.selected"><span class="badge" ng-bind="job.StaffRequired"></span></td>
             <td>
-                <button class="btn btn-action btn-default">Edit</button>
+                <a class="btn btn-action btn-default" href="#/edit/{{listFilter.JobCostCentre}}/{{job.BookID}}">Edit</a>
                 <button class="btn btn-action">Send message</button>
             </td>
         </tr>

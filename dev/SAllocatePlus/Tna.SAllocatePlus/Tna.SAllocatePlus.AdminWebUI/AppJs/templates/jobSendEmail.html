@@ -1,0 +1,131 @@
+﻿<h2>
+    Sending job email
+</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <div class="pull-right">
+            <button class="btn" ng-click="jobPanelShow=!jobPanelShow" ng-class="jobPanelShow?'btn-success':'btn-default'">Peek view</button>
+        </div>
+        
+        Job selected summary: <span ng-bind="SelectedJobs.length" class="badge"></span> jobs
+    </div>
+    <div class="panel-body" ng-show="jobPanelShow">
+        <table class="table wn-table table-clickable">
+            <thead>
+                <tr>
+                    <th>
+                        Cost centre
+                    </th>
+                    <th>
+                        BookID
+                    </th>
+                    <th>
+                        Site name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Job date
+                    </th>
+                    <th>
+                        Job time
+                    </th>
+                    <th>
+                        Staff required
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="job in SelectedJobs">
+                    <td ng-bind="job.JobCostCentre"></td>
+                    <td ng-bind="job.BookID"></td>
+                    <td ng-bind="job.SiteName"></td>
+                    <td ng-bind="job.SiteAddress"></td>
+                    <td ng-bind="job.JobDate | date"></td>
+                    <td ng-bind="job.JobTime | time"></td>
+                    <td><span class="badge" ng-bind="job.StaffRequired"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+        <div class="form form-inline">
+            <div class="pull-right">
+                <button class="btn btn-warning" ng-click="previewMessage()">Preview message</button>
+            </div>
+            
+            <select class="form-control" ng-model="listFilter.StaffCostCentre" ng-options="cc as cc for cc in costCentreList">
+                <option value="">Please select</option>
+            </select>
+            <a class="btn btn-default" ng-click="showStaff()">Show staff <i class="glyphicon glyphicon-refresh spin-animate" ng-show="FindWatcher('getStaffsForCostCentre').loading"></i></a>
+
+
+        </div>
+    </div>
+    <div class="panel-body" ng-show="!showEmailCompose">
+        <table class="table wn-table table-clickable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Cost centre
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Mobile
+                    </th>
+                    <th>
+                        Active
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="staff in staffList | sendEmailStaffFilter:showEmailCompose" ng-class="{'selected':staff.selected}">
+                    <td>
+                        <button class="btn" ng-class="staff.selected?'btn-primary':'btn-default'" ng-click="staff.selected=!staff.selected"><i class="fa fa-check" ng-class="{'invisible':!staff.selected}"></i></button>
+                    </td>
+                    <td ng-bind="staff.StaffCostCentre"></td>
+                    <td ng-bind="staff.FirstName+' '+staff.SurName"></td>
+                    <td ng-bind="staff.Email"></td>
+                    <td ng-bind="staff.Mobile"></td>
+                    <td>
+                        <i class="fa fa-check text-blue" ng-show="staff.Active"></i>
+                        <i class="fa fa-remove text-red" ng-show="!staff.Active"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-warning">
+    <div class="panel-heading clearfix">
+        <div class="pull-right">
+            <button class="btn btn-danger" ng-click="showEmailCompose=!showEmailCompose" ng-show="showEmailCompose">Close preview</button>
+        </div>
+
+        Preview email message
+    </div>
+    <div class="panel-body" ng-if="showEmailCompose">
+        <label class="control-label">
+            Email will be sent to: <span ng-repeat="staff in staffList | sendEmailStaffFilter:showEmailCompose">{{staff.FirstName}} {{staff.SurName}}, </span>
+        </label>
+        <textarea class="form-control" rows="10" ng-model="emailMessage"></textarea>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button class="btn btn-primary" ng-click="send()" ng-show="showEmailCompose">Send</button>
+        </div>
+    </div>
+</div>
+

@@ -5,7 +5,8 @@
     .factory('jobService', ['ajaxHelper', '$q', function (ajaxHelper, $q) {
         return {
             getJobsForCostCentre: getJobsForCostCentre,
-            saveJobDetail: saveJobDetail
+            saveJobDetail: saveJobDetail,
+            getJobMessageTemplate: getJobMessageTemplate
         }
 
         function getJobsForCostCentre(costCentre) {
@@ -22,6 +23,10 @@
             return ajaxHelper.post(resourceUrl.jobApi + "/" + jobDto.BookID, {
                 job: jobDto
             }, "saveJobDetail");
+        }
+
+        function getJobMessageTemplate(costCentre) {
+            return ajaxHelper.get(resourceUrl.jobResource + "/GetEmailTemplate/" + costCentre);
         }
     }]);
 })();

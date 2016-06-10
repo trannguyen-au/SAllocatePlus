@@ -11,9 +11,9 @@ using Tna.SAllocatePlus.CommonShared;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
-        [AllowAnonymous]
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -35,7 +35,6 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult Login(LoginViewModel vm, string returnUrl = "")
         {
             if (ModelState.IsValid)
