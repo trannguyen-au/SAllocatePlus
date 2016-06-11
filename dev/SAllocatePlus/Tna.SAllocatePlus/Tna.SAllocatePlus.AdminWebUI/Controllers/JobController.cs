@@ -10,9 +10,16 @@ using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
-    [Authorize(Roles="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class JobController : Controller
     {
+        JobServiceClient _client;
+
+        public JobController()
+        {
+            _client = ServiceFactory.CreateJobServiceClient();
+        }
+
         // GET: Job
         public ActionResult Index()
         {
@@ -25,7 +32,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
             try
             {
                 var templateContent = "";
-                using (var sr = new StreamReader(Server.MapPath("~/Templates/Emails/SendJobEmail-" + CostCentre+".txt")))
+                using (var sr = new StreamReader(Server.MapPath("~/Templates/Emails/SendJobEmail-" + CostCentre + ".txt")))
                 {
                     templateContent = sr.ReadToEnd();
                 }
@@ -44,9 +51,25 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 
         [Route("/Job/SendEmail/")]
         [HttpPost]
-        public JsonResult SendEmail(SendEmailRequestDto data)
+        public JsonResult SendEmail(SendEmailRequestDto request)
         {
-            return null;
+            try
+            {
+                _client.SendJobEmail(request);
+                return Json(new
+                {
+                    Success = true,
+                    Message = "OK"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Failed"
+                });
+            }
         }
     }
 }

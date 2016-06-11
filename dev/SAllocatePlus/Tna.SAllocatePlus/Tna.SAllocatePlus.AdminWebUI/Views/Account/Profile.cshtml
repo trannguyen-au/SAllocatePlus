@@ -1,0 +1,85 @@
+﻿@model Tna.SAllocatePlus.CommonShared.Dto.StaffAccountDto
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container">
+    <h2>Profile</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.StaffID, new { @class = "control-label col-xs-3" })
+
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(model => model.StaffID, new { @class = "form-control", Readonly = "Readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Staff Name</label>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">First name</span>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                        <span class="input-group-addon">Surname</span>
+                        @Html.TextBoxFor(model => model.SurName, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Password </label>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            @Html.ActionLink("Reset password", "ResetPassword", new { id = Model.StaffID }, new { @class = "btn btn-warning" })
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-xs-3" })
+
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-xs-3" })
+
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Mobile)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Cost centre</label>
+                <div class="col-xs-6">
+                    @Html.DropDownListFor(model=>model.StaffCostCentre, (SelectList) ViewBag.CostCentreList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-push-3 col-xs-6">
+                    <input type="hidden" name="hfAction" id="hfAction" value="Save" />
+                    <input type="submit" value="Save" class="btn btn-primary" />
+
+
+                    @{
+        if (User.IsInRole("Administrator"))
+        {
+            <button type="button" id="btnDelete" value="Delete" class="btn btn-danger">Delete</button>
+                        @Html.ActionLink("Back to List", "Index", "Admin", null, new { @class = "btn btn-default" })
+        }
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

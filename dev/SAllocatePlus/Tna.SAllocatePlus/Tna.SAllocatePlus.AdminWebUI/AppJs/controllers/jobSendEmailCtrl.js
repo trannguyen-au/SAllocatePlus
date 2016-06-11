@@ -56,11 +56,25 @@
                 }, function (error) {
                     l(error);
                 });
-        }
+        };
 
-        s.sendEmail = function () {
-            alert('send email');
-        }
+        s.send = function () {
+            var jobIdList = [], staffIdList = [];
+            $rootScope.SelectedJobs.forEach(function (item) {
+                jobIdList.push(item.BookID);
+            });
+            s.staffList.filter(function (staff) {
+                return staff.selected;
+            })
+            .forEach(function (staff) {
+                staffIdList.push(staff.StaffID);
+            });
+            jobService.sendJobEmail(jobIdList, staffIdList, $routeParams.cc, s.emailMessage)
+            .then(function (result) {
+                $location.url('/' + $routeParams.cc);
+                console.log(result);
+            });
+        };
 
         s.previewMessage = function () {
             jobService.getJobMessageTemplate(s.listFilter.StaffCostCentre)
@@ -88,6 +102,8 @@
                 s.showEmailCompose = true;
             });
         };
+
+
 
         // load staff list based on value of cost centre
         

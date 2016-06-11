@@ -7,24 +7,35 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Tna.SAllocatePlus.AdminWebUI.Models;
 using Tna.SAllocatePlus.AdminWebUI.Security;
+using Tna.SAllocatePlus.ClientServices;
 using Tna.SAllocatePlus.CommonShared;
+using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
     [AllowAnonymous]
     public class AccountController : Controller
     {
+        AccountServiceClient _accountClient;
+        CommonDataServiceClient _commonDataService;
+
+        public AccountController()
+        {
+            _accountClient = ServiceFactory.CreateAccountServiceClient();
+            _commonDataService = ServiceFactory.CreateCommonDataServiceClient();
+        }
+
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole(Constants.RoleValue.Administrator))
                 {
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Job");
                 }
                 else if (User.IsInRole(Constants.RoleValue.Employee))
                 {
-                    return RedirectToAction("Index", "Employee");
+                    return RedirectToAction("Profile", "Account");
                 }
                 else
                 {
@@ -66,7 +77,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
                     }
                     else if (userPrincipal.IsInRole(Constants.RoleValue.Employee))
                     {
-                        return RedirectToAction("Index", "Employee");
+                        return RedirectToAction("Profile", "Employee");
                     }
                     else
                     {
@@ -87,6 +98,49 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account", null);
+        }
+
+        public new ActionResult Profile()
+        {
+            ViewBag.CostCentreList = new SelectList(_commonDataService.GetAllCostCentre(),"CostCentreCode","CostCentreCode");
+            return View((User as UserPrincipal).SerializedData);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public new ActionResult Profile(StaffAccountDto dto)
+        {
+            //_accountClient.UpdateStaff(dto);
+            ViewBag.CostCentreList = new SelectList(_commonDataService.GetAllCostCentre(), "CostCentreCode", "CostCentreCode");
+            ViewBag.IsSuccess = false;
+            ViewBag.Message = "Update success";
+            return View(dto);
+        }
+
+        public ActionResult ResetPassword()
+        {
+            var userData = (User as UserPrincipal).SerializedData;
+            ResetPasswordRequestViewModel dto = new ResetPasswordRequestViewModel()
+            {
+                StaffID = userData.StaffID,
+                Name = string.Format("{0} {1}", userData.FirstName, userData.SurName)
+            };
+            return View(dto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordRequestDto dto)
+        {
+
+            ViewBag.IsSuccess = false;
+            ViewBag.Message = "Update success";
+            return View(dto);
+        }
+
+        public ActionResult ResetPasswordSuccess()
+        {
+            return View();
         }
     }
 }

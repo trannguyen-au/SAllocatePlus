@@ -16,15 +16,14 @@ namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
 
         public JobController()
         {
-            client = new JobServiceClient("JobServiceEndPoint");
+            client = ServiceFactory.CreateJobServiceClient();
         }
 
+        [Route("api/Job/{id}")]
         public IHttpActionResult Get(int id)
         {
-            return Ok(new JobDto()
-            {
-                BookID = 213
-            });
+            //return Ok();
+            return Ok(client.GetJobById(id));
         }
 
         public IHttpActionResult Get([FromUri]string costCentre)
@@ -32,15 +31,32 @@ namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
             return Ok(client.GetJobsByCostCentre(costCentre).ToList());
         }
 
-        
-        public IHttpActionResult Post([FromBody]JobDto job)
+        [HttpPost]
+        [Route("api/Job/{id}")]
+        public IHttpActionResult UpdateJob(JobDto job, int id)
         {
-            return Ok(job);
+            try
+            {
+                client.UpdateJob(job);
+                // return a fresh entity
+                return Ok(client.GetJobById(id));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         public IHttpActionResult Post([FromUri]int id,[FromBody]JobDto job)
         {
             return Ok(job);
+        }
+
+        [HttpGet]
+        [Route("api/Job/{id}/Availability")]
+        public IHttpActionResult GetJobAvailability(int id)
+        {
+            return Ok(client.GetJobAvailabilityById(id));
         }
     }
 }

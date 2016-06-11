@@ -42,56 +42,37 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
             var costCentreList = context.CostCentreSet.ToList();
             var wery = context.StaffSet.FirstOrDefault(u => u.Username == "werynguyen");
             wery.AccessList = new List<StaffAccessRight>();
-            wery.AccessList.Add(new StaffAccessRight()
+
+            var weryCCAccess = new string[] { "AU-VIC", "AU-NSW", "AU-QLD", "AU-SAT", "AU-WA" };
+            foreach (var cc in weryCCAccess)
             {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-VIC",
-                CostCentre = costCentreList.FirstOrDefault(c=>c.CostCentreCode == "AU-VIC")
-            });
-            wery.AccessList.Add(new StaffAccessRight()
-            {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-NSW",
-                StaffUserID = wery.StaffID,
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-NSW")
-            });
-            wery.AccessList.Add(new StaffAccessRight()
-            {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-QLD",
-                StaffUserID = wery.StaffID,
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-QLD")
-            });
-            wery.AccessList.Add(new StaffAccessRight()
-            {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-WA",
-                StaffUserID = wery.StaffID,
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-WA")
-            });
-            wery.AccessList.Add(new StaffAccessRight()
-            {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-SAT",
-                StaffUserID = wery.StaffID,
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-SAT")
-            });
+                var sar = new StaffAccessRight()
+                {
+                    AccessRights = AccessRightsEnum.Write,
+                    CostCentreCode = cc,
+                    CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == cc),
+                    StaffUser = wery
+                };
+
+                context.StaffAccessRightSet.AddOrUpdate(s => new { StaffUserID = s.StaffUserID, CostCentreCode = s.CostCentreCode }, sar);
+            }
 
             var nguyen = context.StaffSet.FirstOrDefault(u => u.Username == "nguyennt");
+            var nguyenCCAccess = new string[] { "AU-VIC", "AU-NSW" };
             nguyen.AccessList = new List<StaffAccessRight>();
-            nguyen.AccessList.Add(new StaffAccessRight()
+
+            foreach (var cc in nguyenCCAccess)
             {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-VIC",
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-VIC")
-            });
-            nguyen.AccessList.Add(new StaffAccessRight()
-            {
-                AccessRights = AccessRightsEnum.Write,
-                CostCentreCode = "AU-NSW",
-                StaffUserID = wery.StaffID,
-                CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == "AU-NSW")
-            });
+                var sar = new StaffAccessRight()
+                {
+                    AccessRights = AccessRightsEnum.Write,
+                    CostCentreCode = cc,
+                    CostCentre = costCentreList.FirstOrDefault(c => c.CostCentreCode == cc),
+                    StaffUser = nguyen
+                };
+
+                context.StaffAccessRightSet.AddOrUpdate(s => new { StaffUserID = s.StaffUserID, CostCentreCode = s.CostCentreCode }, sar);
+            }
 
             context.SaveChanges();
 
@@ -133,12 +114,12 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Migrations
         private void AddRegion(TnaContext context)
         {
             var regionList = new CostCentre[] {
-                new CostCentre() {CostCentreCode="AU",Name= "Australia"},
-                new CostCentre() {CostCentreCode="AU-VIC",Name= "Victoria"},
-                new CostCentre() {CostCentreCode="AU-NSW",Name= "New South Wales"},
-                new CostCentre() {CostCentreCode="AU-QLD",Name= "Queensland"},
-                new CostCentre() {CostCentreCode="AU-WA",Name= "Western Australia"},
-                new CostCentre() {CostCentreCode="AU-SAT",Name= "Satelite regions"}
+                new CostCentre() {CostCentreCode="AU",Name= "Australia", Email="contact@wnext.net.au"},
+                new CostCentre() {CostCentreCode="AU-VIC",Name= "Victoria", Email="contact@wnext.net.au"},
+                new CostCentre() {CostCentreCode="AU-NSW",Name= "New South Wales", Email="contact@wnext.net.au"},
+                new CostCentre() {CostCentreCode="AU-QLD",Name= "Queensland", Email="contact@wnext.net.au"},
+                new CostCentre() {CostCentreCode="AU-WA",Name= "Western Australia", Email="contact@wnext.net.au"},
+                new CostCentre() {CostCentreCode="AU-SAT",Name= "Satelite regions", Email="contact@wnext.net.au"}
             };
 
             foreach (var region in regionList)

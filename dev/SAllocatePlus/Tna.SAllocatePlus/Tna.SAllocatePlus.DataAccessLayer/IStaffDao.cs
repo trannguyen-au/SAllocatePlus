@@ -17,5 +17,7 @@ namespace Tna.SAllocatePlus.DataAccessLayer
         List<Staff> GetStaffByCostCentre(string costCentre);
 
         List<Staff> GetStaffsByIdList(List<int> list);
+
+        void Update(Staff user);
     }
 }

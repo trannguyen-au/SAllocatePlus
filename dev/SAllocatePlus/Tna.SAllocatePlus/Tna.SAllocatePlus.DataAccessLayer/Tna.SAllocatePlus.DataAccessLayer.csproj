@@ -49,6 +49,7 @@
     <Compile Include="Entities\JobStaff.cs" />
     <Compile Include="Entities\JobStaffAvailability.cs" />
     <Compile Include="Entities\Staff.cs" />
+    <Compile Include="IJobStaffAvailabilityDao.cs" />
     <Compile Include="IJobStaffDao.cs" />
     <Compile Include="IStaffDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,11 +23,13 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
         
         private int BookIDField;
         
+        private System.Nullable<bool> EmailSentField;
+        
+        private string JobCostCentreField;
+        
         private System.Nullable<System.DateTime> JobDateField;
         
         private string JobDetailsField;
-        
-        private string JobRegionField;
         
         private Tna.SAllocatePlus.CommonShared.Dto.JobStaffDto[] JobStaffListField;
         
@@ -71,6 +73,32 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> EmailSent
+        {
+            get
+            {
+                return this.EmailSentField;
+            }
+            set
+            {
+                this.EmailSentField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobCostCentre
+        {
+            get
+            {
+                return this.JobCostCentreField;
+            }
+            set
+            {
+                this.JobCostCentreField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> JobDate
         {
             get
@@ -93,19 +121,6 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
             set
             {
                 this.JobDetailsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JobRegion
-        {
-            get
-            {
-                return this.JobRegionField;
-            }
-            set
-            {
-                this.JobRegionField = value;
             }
         }
         
@@ -336,6 +351,168 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
             set
             {
                 this.StartTimeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SendEmailRequestDto", Namespace="http://schemas.datacontract.org/2004/07/Tna.SAllocatePlus.CommonShared.Dto")]
+    public partial class SendEmailRequestDto : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string ContentField;
+        
+        private string CostCentreField;
+        
+        private int[] JobListField;
+        
+        private int[] StaffListField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content
+        {
+            get
+            {
+                return this.ContentField;
+            }
+            set
+            {
+                this.ContentField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CostCentre
+        {
+            get
+            {
+                return this.CostCentreField;
+            }
+            set
+            {
+                this.CostCentreField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] JobList
+        {
+            get
+            {
+                return this.JobListField;
+            }
+            set
+            {
+                this.JobListField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] StaffList
+        {
+            get
+            {
+                return this.StaffListField;
+            }
+            set
+            {
+                this.StaffListField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="JobAvailabilityDto", Namespace="http://schemas.datacontract.org/2004/07/Tna.SAllocatePlus.CommonShared.Dto")]
+    public partial class JobAvailabilityDto : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int BookIDField;
+        
+        private System.Nullable<bool> IsAvailableField;
+        
+        private int StaffIDField;
+        
+        private string StaffNameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BookID
+        {
+            get
+            {
+                return this.BookIDField;
+            }
+            set
+            {
+                this.BookIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsAvailable
+        {
+            get
+            {
+                return this.IsAvailableField;
+            }
+            set
+            {
+                this.IsAvailableField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StaffID
+        {
+            get
+            {
+                return this.StaffIDField;
+            }
+            set
+            {
+                this.StaffIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StaffName
+        {
+            get
+            {
+                return this.StaffNameField;
+            }
+            set
+            {
+                this.StaffNameField = value;
             }
         }
     }

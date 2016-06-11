@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Tna.SAllocatePlus.ClientServices
 {
-
-
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace = "http://Tna.SAllocatePlus.BusinessLogicServer", ConfigurationName = "IAccountService")]
     public interface IAccountService
     {
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IAccountService/UpdateStaff", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IAccountService/UpdateStaffResponse")]
+        void UpdateStaff(Tna.SAllocatePlus.CommonShared.Dto.StaffAccountDto staffData);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IAccountService/ResetPassword", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IAccountService/ResetPasswordRespons" +
             "e")]
@@ -67,6 +68,11 @@ namespace Tna.SAllocatePlus.ClientServices
         public AccountServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
+        }
+
+        public void UpdateStaff(Tna.SAllocatePlus.CommonShared.Dto.StaffAccountDto staffData)
+        {
+            base.Channel.UpdateStaff(staffData);
         }
 
         public string[] ResetPassword(Tna.SAllocatePlus.CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)

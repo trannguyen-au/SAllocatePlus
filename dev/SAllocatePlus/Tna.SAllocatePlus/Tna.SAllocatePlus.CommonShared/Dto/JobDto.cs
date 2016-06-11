@@ -33,6 +33,8 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
         [DataMember]
         public string JobCostCentre { get; set; }
         [DataMember]
+        public bool? EmailSent { get; set; }
+        [DataMember]
         public virtual List<JobStaffDto> JobStaffList { get; set; }
     }
 }

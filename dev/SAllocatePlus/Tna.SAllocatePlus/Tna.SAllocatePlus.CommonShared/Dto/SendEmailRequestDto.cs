@@ -10,6 +10,7 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
     {
         public List<int> JobList { get; set; }
         public List<int> StaffList { get; set; }
+        public string CostCentre { get; set; }
         public string Content { get; set; }
     }
 }

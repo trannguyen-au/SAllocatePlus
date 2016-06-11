@@ -108,10 +108,10 @@
     </div>
 </div>
 
-<div class="panel panel-warning">
+<div class="panel panel-danger">
     <div class="panel-heading clearfix">
         <div class="pull-right">
-            <button class="btn btn-danger" ng-click="showEmailCompose=!showEmailCompose" ng-show="showEmailCompose">Close preview</button>
+            <button class="btn btn-warning" ng-click="showEmailCompose=!showEmailCompose" ng-show="showEmailCompose">Close preview</button>
         </div>
 
         Preview email message
@@ -120,7 +120,7 @@
         <label class="control-label">
             Email will be sent to: <span ng-repeat="staff in staffList | sendEmailStaffFilter:showEmailCompose">{{staff.FirstName}} {{staff.SurName}}, </span>
         </label>
-        <textarea class="form-control" rows="10" ng-model="emailMessage"></textarea>
+        <textarea class="form-control" rows="25" ng-model="emailMessage"></textarea>
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right">

@@ -18,8 +18,21 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
         List<JobDto> GetJobsByCostCentre(string regionName);
 
         [OperationContract]
+        List<JobDto> GetJobsByStaff(int staffId, bool hasAvailability);
+
+        [OperationContract]
+        void SetAvailabilityForJob(int bookId, int staffId, bool available);
+
+        [OperationContract]
         List<JobStaffDto> GetStaffListForJob(int bookID);
         [OperationContract]
         void SendJobEmail(SendEmailRequestDto request);
+
+        [OperationContract]
+        JobDto GetJobById(int bookId);
+        [OperationContract]
+        List<JobAvailabilityDto> GetJobAvailabilityById(int bookId);
+        [OperationContract]
+        void UpdateJob(JobDto job);
     }
 }

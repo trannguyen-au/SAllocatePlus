@@ -15,72 +15,6 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResetPasswordRequestDto", Namespace="http://schemas.datacontract.org/2004/07/Tna.SAllocatePlus.CommonShared.Dto")]
-    public partial class ResetPasswordRequestDto : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string NewPasswordField;
-        
-        private string OldPasswordField;
-        
-        private int UserIdField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NewPassword
-        {
-            get
-            {
-                return this.NewPasswordField;
-            }
-            set
-            {
-                this.NewPasswordField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OldPassword
-        {
-            get
-            {
-                return this.OldPasswordField;
-            }
-            set
-            {
-                this.OldPasswordField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId
-        {
-            get
-            {
-                return this.UserIdField;
-            }
-            set
-            {
-                this.UserIdField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="StaffAccountDto", Namespace="http://schemas.datacontract.org/2004/07/Tna.SAllocatePlus.CommonShared.Dto")]
     public partial class StaffAccountDto : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -300,6 +234,72 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResetPasswordRequestDto", Namespace="http://schemas.datacontract.org/2004/07/Tna.SAllocatePlus.CommonShared.Dto")]
+    public partial class ResetPasswordRequestDto : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string NewPasswordField;
+        
+        private byte[] OldPasswordField;
+        
+        private int StaffIDField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewPassword
+        {
+            get
+            {
+                return this.NewPasswordField;
+            }
+            set
+            {
+                this.NewPasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldPassword
+        {
+            get
+            {
+                return this.OldPasswordField;
+            }
+            set
+            {
+                this.OldPasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StaffID
+        {
+            get
+            {
+                return this.StaffIDField;
+            }
+            set
+            {
+                this.StaffIDField = value;
+            }
+        }
+    }
 }
 namespace Tna.SAllocatePlus.CommonShared
 {
@@ -321,4 +321,5 @@ namespace Tna.SAllocatePlus.CommonShared
         Write = 3,
     }
 }
+
 

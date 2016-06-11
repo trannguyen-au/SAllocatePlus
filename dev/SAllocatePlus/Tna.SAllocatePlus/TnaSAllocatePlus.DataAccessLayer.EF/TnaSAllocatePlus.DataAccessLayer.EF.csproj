@@ -57,10 +57,19 @@
   <ItemGroup>
     <Compile Include="Dao\CommonDataDao.cs" />
     <Compile Include="Dao\JobDao.cs" />
+    <Compile Include="Dao\JobStaffAvailabilityDao.cs" />
     <Compile Include="Dao\StaffDao.cs" />
     <Compile Include="Migrations\201606081425209_Init.cs" />
     <Compile Include="Migrations\201606081425209_Init.Designer.cs">
       <DependentUpon>201606081425209_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100937051_UpdateJob.cs" />
+    <Compile Include="Migrations\201606100937051_UpdateJob.Designer.cs">
+      <DependentUpon>201606100937051_UpdateJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606101507469_ColumnUpdate.cs" />
+    <Compile Include="Migrations\201606101507469_ColumnUpdate.Designer.cs">
+      <DependentUpon>201606101507469_ColumnUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -84,6 +93,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606081425209_Init.resx">
       <DependentUpon>201606081425209_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100937051_UpdateJob.resx">
+      <DependentUpon>201606100937051_UpdateJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606101507469_ColumnUpdate.resx">
+      <DependentUpon>201606101507469_ColumnUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,6 +12,8 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
     public interface IAccountService
     {
         [OperationContract]
+        void UpdateStaff(StaffAccountDto staffData);
+        [OperationContract]
         List<string> ResetPassword(ResetPasswordRequestDto resetPasswordRequest);
         [OperationContract]
         List<string> PrecheckForResetPassword(ResetPasswordRequestDto resetPasswordRequest);

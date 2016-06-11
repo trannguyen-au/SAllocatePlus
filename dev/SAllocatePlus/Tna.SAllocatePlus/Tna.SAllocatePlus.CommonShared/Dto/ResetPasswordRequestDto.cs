@@ -8,8 +8,8 @@ namespace Tna.SAllocatePlus.CommonShared.Dto
 {
     public class ResetPasswordRequestDto
     {
-        public int UserId { get; set; }
-        public string OldPassword { get; set; }
+        public int StaffID { get; set; }
+        public byte[] OldPassword { get; set; }
         public string NewPassword { get; set; }
     }
 }

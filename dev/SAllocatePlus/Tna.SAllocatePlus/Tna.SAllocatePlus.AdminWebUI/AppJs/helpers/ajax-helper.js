@@ -63,8 +63,11 @@ angular.module('wn.ajax-helper', [])
             else {
                 var watcher = this.FindWatcher(watcherId);
                 watcher.loading = true;
-                $http.post(url, dataInput, {
-                    cache: isCache
+                $http.post(url, JSON.stringify(dataInput), {
+                    cache: isCache,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
                 .success(function (data, status, header) {
                     if ($this.Debug) console.log({ url: url, watcherId: watcherId, data: data, status: status, header: header });

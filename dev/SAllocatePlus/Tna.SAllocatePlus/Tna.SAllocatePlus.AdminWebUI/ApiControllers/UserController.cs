@@ -4,36 +4,65 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Tna.SAllocatePlus.AdminWebUI.Models;
+using Tna.SAllocatePlus.ClientServices;
+using Tna.SAllocatePlus.CommonShared;
+using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
 {
     public class UserController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        AccountServiceClient _accountService;
+        public UserController()
         {
-            return new string[] { "value1", "value2" };
+            _accountService = ServiceFactory.CreateAccountServiceClient();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [Authorize]
+        [HttpPost]
+        public HttpResponseMessage ResetPassword(ResetPasswordRequestViewModel resetPasswordModel)
         {
-            return "value";
-        }
+            var jsonMessage = new JsonResponseMessage();
+            if (!ModelState.IsValid)
+            {
+                jsonMessage.Error("Invalid data", resetPasswordModel);
+            }
+            else if (resetPasswordModel.NewPassword != resetPasswordModel.ConfirmPassword)
+            {
+                jsonMessage.Error("Your password doesn't not match", resetPasswordModel);
+            }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
+            if (!jsonMessage.IsSuccess)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, jsonMessage);
+            }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            try
+            {
+                var resetPasswordDto = new ResetPasswordRequestDto()
+                {
+                    OldPassword = EncryptionService.EncryptPassword(resetPasswordModel.OldPassword),
+                    StaffID = resetPasswordModel.StaffID,
+                    NewPassword = resetPasswordModel.NewPassword
+                };
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+                var errors = _accountService.ResetPassword(resetPasswordDto);
+
+                if (errors.Length > 0)
+                {
+                    jsonMessage.Error(string.Join("; ", errors));
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, jsonMessage);
+                }
+
+                jsonMessage.Success("Ok", resetPasswordModel);
+                return Request.CreateResponse(HttpStatusCode.Accepted, jsonMessage);
+            }
+            catch (Exception ex)
+            {
+                jsonMessage.Error("Server error: " + ex.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, jsonMessage);
+            }
         }
     }
 }

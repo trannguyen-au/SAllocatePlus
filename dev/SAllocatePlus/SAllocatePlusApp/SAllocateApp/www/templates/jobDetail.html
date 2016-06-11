@@ -1,0 +1,36 @@
+<ion-view view-title="{{job.SiteName}}">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-icon-left item-button-right item-text-wrap">
+        <i class="icon ion-pin"></i>
+        {{job.SiteAddress}}
+        <button class="button button-light">
+          <i class="icon ion-ios-navigate-outline"></i>
+        </button>
+      </div>
+      <div class="item item-icon-left item-button-right item-text-wrap">
+        <i class="icon ion-ios-time"></i>
+        {{job.JobDate | date}} - {{job.JobTime | time}}
+      </div>
+      <div class="item item-icon-left item-button-right item-text-wrap">
+        <i class="icon ion-person"></i>
+        Supervisor : <br>
+        {{job.SupervisorName}}
+      </div>
+      <div class="item item-icon-left item-button-right item-text-wrap">
+        <i class="icon ion-person"></i>
+        Staff required : {{job.StaffRequired}}
+      </div>
+      <div class="item item-icon-left item-text-wrap" >
+        <i class="icon ion-android-textsms"></i>
+        {{job.JobDetails}}
+      </div>
+      <div class="item">
+        <div class="button-bar">
+          <button class="button button-assertive" ng-click="setAvailable(false)">Not Available</button>
+          <button class="button button-balanced" ng-click="setAvailable(true)">Available</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

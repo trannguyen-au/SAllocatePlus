@@ -13,7 +13,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Models
 
         public JsonResponseMessage()
         {
-            IsSuccess = false;
+            IsSuccess = true;
             Message = "";
         }
 

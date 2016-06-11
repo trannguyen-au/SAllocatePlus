@@ -57,6 +57,22 @@
 
         if (typeof ($routeParams.id) != 'undefined') {
             $scope.param.BookID = $routeParams.id;
+            // load job detail data
+            jobService.getJobById($routeParams.id)
+            .then(function (result) {
+                $scope.model = result;
+
+                jobService.getJobAvailability($routeParams.id)
+                .then(function (aResult) {
+                    $scope.availabilities = aResult;
+                }, function (error) {
+                    console.log(error);
+                });
+
+                console.log(result);
+            }, function (error) {
+                console.log(error);
+            });
         }
 
         // load staff list based on value of cost centre

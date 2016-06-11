@@ -1,17 +1,7 @@
 ﻿<h2>
     <a href="#/{{param.CostCentre}}"><i class="glyphicon glyphicon-backward"></i></a> 
-    Job Detail <a class="btn btn-default">Save</a>
+    Job Detail
 </h2>
-
-<div class="well well-sm">
-    <div class="form form-inline">
-        <select class="form-control" ng-model="jl.listFilter.JobCostCentre" ng-options="cc as cc for cc in costCentreList">
-            <option value="">All</option>
-        </select>
-        <button class="btn btn-default" ng-click="jl.showJob()">Show job</button>
-
-    </div>
-</div>
 <div class="row">
     <div class="col-sm-6">
         <h3>Job detail</h3>
@@ -35,20 +25,20 @@
             <div class="form-group">
                 <label class="col-xs-3 control-label">Supervisor</label>
                 <div class="col-sm-6">
-                    <select class="form-control" ng-model="model.JobSupervisor" ng-options="cc.StaffID as cc.FirstName+' '+cc.SurName for cc in staffList"></select>
+                    <select class="form-control" ng-model="model.SupervisorStaffID" ng-options="cc.StaffID as cc.FirstName+' '+cc.SurName for cc in staffList"></select>
                 </div>
 
             </div>
             <div class="form-group">
                 <label class="col-xs-3 control-label">Site name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" ng-model="jd.model.SiteName" />
+                    <input type="text" class="form-control" ng-model="model.SiteName" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-xs-3 control-label">Site address</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" ng-model="jd.model.SiteAddress" />
+                    <input type="text" class="form-control" ng-model="model.SiteAddress" />
                 </div>
             </div>
             <div class="form-group">
@@ -90,5 +80,52 @@
     <div class="col-sm-6">
         <h3>Availability</h3>
         <hr />
+        <div class="well well-sm">
+            <div class="form form-inline">
+                <select class="form-control" ng-model="listFilter.JobCostCentre" ng-options="cc as cc for cc in costCentreList">
+                    <option value="">All</option>
+                </select>
+                <button class="btn btn-default" ng-click="showJob()">Search staff</button>
+
+            </div>
+        </div>
+        <table class="table table-clickable wn-table">
+            <thead>
+                <tr>
+                    <th>Staff name</th>
+                    <th>Is available</th>
+                    <th>Is confirmed</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="a in availabilities">
+                    <td ng-bind="a.StaffName"></td>
+                    <td>
+                        <span class="glyphicon" ng-class="{'glyphicon-minus':a.IsAvailable===null,'glyphicon-remove text-danger':a.IsAvailable===false,'glyphicon-ok text-green':a.IsAvailable===true}"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon" ng-class="{'glyphicon-minus':a.IsConfirmed===null,'glyphicon-remove text-danger':a.IsConfirmed===false,'glyphicon-ok text-green':a.IsConfirmed===true}"></span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-action btn-sm" bs-tooltip data-title="Resent email" data-animation="am-flip-x"><i class="fa fa-envelope"></i></button>
+                        <button class="btn btn-action btn-info btn-sm" bs-tooltip data-title="Confirm available" data-animation="am-flip-x"><i class="fa fa-check"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <b>Legend:</b>
+                        <ul>
+                            <li><span class="glyphicon glyphicon-minus"></span> : Not yet answer</li>
+                            <li><span class="glyphicon glyphicon-remove text-danger"></span> : Not available</li>
+                            <li><span class="glyphicon glyphicon-ok text-green"></span> : Available</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>

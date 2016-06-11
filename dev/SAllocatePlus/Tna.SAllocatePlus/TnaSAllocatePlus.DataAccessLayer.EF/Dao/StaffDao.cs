@@ -53,5 +53,25 @@ namespace TnaSAllocatePlus.DataAccessLayer.EF.Dao
         {
             return _context.StaffSet.Where(s => list.Contains(s.StaffID)).ToList();
         }
+
+
+        public void Update(Staff myUser)
+        {
+            var entity = _context.StaffSet.FirstOrDefault(u => u.StaffID == myUser.StaffID);
+            if (entity == null)
+                throw new Exception("Staff does not existed");
+
+            entity.FirstName = myUser.FirstName;
+            entity.SurName = myUser.SurName;
+            entity.Email = myUser.Email;
+            entity.StaffCostCentre = myUser.StaffCostCentre;
+            entity.Password = myUser.Password;
+            entity.Active = myUser.Active;
+            entity.Mobile = myUser.Mobile;
+            entity.Username = myUser.Username;
+            entity.CostCentre = _context.CostCentreSet.FirstOrDefault(cc=>cc.CostCentreCode == myUser.StaffCostCentre);
+
+            _context.SaveChanges();
+        }
     }
 }

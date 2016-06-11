@@ -44,6 +44,9 @@
             <th>
                 Staff required
             </th>
+            <th>
+                Email sent
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -59,6 +62,10 @@
             <td ng-click="job.selected=!job.selected" ng-bind="job.JobDate | date"></td>
             <td ng-click="job.selected=!job.selected" ng-bind="job.JobTime | time"></td>
             <td ng-click="job.selected=!job.selected"><span class="badge" ng-bind="job.StaffRequired"></span></td>
+            <td>
+                <i class="fa fa-check text-blue" ng-show="job.EmailSent"></i>
+                <i class="fa fa-remove text-red" ng-show="!job.EmailSent"></i>
+            </td>
             <td>
                 <a class="btn btn-action btn-default" href="#/edit/{{listFilter.JobCostCentre}}/{{job.BookID}}">Edit</a>
                 <button class="btn btn-action">Send message</button>

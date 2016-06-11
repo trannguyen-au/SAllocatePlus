@@ -19,9 +19,29 @@ namespace Tna.SAllocatePlus.ClientServices
             "nse")]
         Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByCostCentre(string regionName);
 
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByStaff", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobsByStaffResponse")]
+        Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByStaff(int staffId, bool hasAvailability);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/SetAvailabilityForJob", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/SetAvailabilityForJobRes" +
+            "ponse")]
+        void SetAvailabilityForJob(int bookId, int staffId, bool available);
+
         [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetStaffListForJob", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetStaffListForJobRespon" +
             "se")]
         Tna.SAllocatePlus.CommonShared.Dto.JobStaffDto[] GetStaffListForJob(int bookID);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/SendJobEmail", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/SendJobEmailResponse")]
+        void SendJobEmail(Tna.SAllocatePlus.CommonShared.Dto.SendEmailRequestDto request);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobById", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobByIdResponse")]
+        Tna.SAllocatePlus.CommonShared.Dto.JobDto GetJobById(int bookId);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobAvailabilityById", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/GetJobAvailabilityByIdRe" +
+            "sponse")]
+        Tna.SAllocatePlus.CommonShared.Dto.JobAvailabilityDto[] GetJobAvailabilityById(int bookId);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/UpdateJob", ReplyAction = "http://Tna.SAllocatePlus.BusinessLogicServer/IJobService/UpdateJobResponse")]
+        void UpdateJob(Tna.SAllocatePlus.CommonShared.Dto.JobDto job);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -63,10 +83,39 @@ namespace Tna.SAllocatePlus.ClientServices
             return base.Channel.GetJobsByCostCentre(regionName);
         }
 
+        public Tna.SAllocatePlus.CommonShared.Dto.JobDto[] GetJobsByStaff(int staffId, bool hasAvailability)
+        {
+            return base.Channel.GetJobsByStaff(staffId, hasAvailability);
+        }
+
+        public void SetAvailabilityForJob(int bookId, int staffId, bool available)
+        {
+            base.Channel.SetAvailabilityForJob(bookId, staffId, available);
+        }
+
         public Tna.SAllocatePlus.CommonShared.Dto.JobStaffDto[] GetStaffListForJob(int bookID)
         {
             return base.Channel.GetStaffListForJob(bookID);
         }
-    }
 
+        public void SendJobEmail(Tna.SAllocatePlus.CommonShared.Dto.SendEmailRequestDto request)
+        {
+            base.Channel.SendJobEmail(request);
+        }
+
+        public Tna.SAllocatePlus.CommonShared.Dto.JobDto GetJobById(int bookId)
+        {
+            return base.Channel.GetJobById(bookId);
+        }
+
+        public Tna.SAllocatePlus.CommonShared.Dto.JobAvailabilityDto[] GetJobAvailabilityById(int bookId)
+        {
+            return base.Channel.GetJobAvailabilityById(bookId);
+        }
+
+        public void UpdateJob(Tna.SAllocatePlus.CommonShared.Dto.JobDto job)
+        {
+            base.Channel.UpdateJob(job);
+        }
+    }
 }

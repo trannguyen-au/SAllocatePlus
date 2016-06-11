@@ -21,9 +21,31 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
             _staffDao = new StaffDao();
         }
 
+        public void UpdateStaff(StaffAccountDto staffData)
+        {
+            var staff = new Staff();
+            staffData.MergeTo(staff);
+            _staffDao.Update(staff);
+        }
+
         public List<string> ResetPassword(CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
         {
-            throw new NotImplementedException();
+            List<string> errors = new List<string>();
+
+            var user = _staffDao.GetStaffByID(resetPasswordRequest.StaffID);
+            if (user == null)
+                errors.Add("Staff is not found");
+
+            if (Encoding.UTF8.GetString(EncryptionService.EncryptPassword(user.Password)) != Encoding.UTF8.GetString(resetPasswordRequest.OldPassword))
+                errors.Add("Your password doesn't match");
+
+            if (errors.Count > 0)
+                return errors;
+
+            user.Password = resetPasswordRequest.NewPassword;
+            _staffDao.Update(user);
+
+            return errors;
         }
 
         public List<string> PrecheckForResetPassword(CommonShared.Dto.ResetPasswordRequestDto resetPasswordRequest)
@@ -63,15 +85,12 @@ namespace Tna.SAllocatePlus.BusinessLogicServer
             return Map(user);
         }
 
-
         public List<StaffAccountDto> GetStaffsByCostCentre(string costCentre)
         {
             var staffList = _staffDao.GetStaffByCostCentre(costCentre);
             return (from s in staffList
                     select MapNoDependency(s)).ToList();
         }
-
-
 
         #region Mapping methods
         private StaffAccountDto Map(Staff user)

@@ -44,6 +44,7 @@
     <Compile Include="CopyOptionAttribute.cs" />
     <Compile Include="CustomAttributeExtensions.cs" />
     <Compile Include="Dto\CostCentreDto.cs" />
+    <Compile Include="Dto\JobAvailabilityDto.cs" />
     <Compile Include="Dto\JobDto.cs">
       <SubType>Code</SubType>
     </Compile>

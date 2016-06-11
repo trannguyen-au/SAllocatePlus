@@ -1,0 +1,15 @@
+{
+  "name": "SAllocateApp",
+  "app_id": "",
+  "gulpStartupTasks": ["sass", "watch"],
+  "proxies": [
+      {
+        "path": "/apiproxy",
+        "proxyUrl": "http://localhost:52617/api"
+      },
+      {
+        "path": "/apiAwsProxyBase",
+        "proxyUrl": "http://ec2-52-62-96-249.ap-southeast-2.compute.amazonaws.com/app_dev.php"
+      }
+    ]
+}
