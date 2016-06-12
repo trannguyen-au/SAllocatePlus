@@ -10,11 +10,12 @@
       return {
         validateLogin: validateLogin,
         loadNewJobData : loadNewJobData,
-        setAvailable : setAvailable
+        setAvailable : setAvailable,
+        loadConfirmedJobData : loadConfirmedJobData
       };
 
       function validateLogin(username, password) {
-        return ajaxHelper.post(ApiEndpoint.url + "/Mobile/ValidateLogin", {
+        return ajaxHelper.post(ApiEndpoint.url + "/Login", {
           UserName : username,
           Password:password
         }, "getCostCentre");
@@ -22,23 +23,36 @@
 
       function loadNewJobData() {
         if(!$rootScope.user || !$rootScope.user.StaffID) {
-          var defer =$q.defer();
-            $timeout(function() {
-              defer.reject();
-            }, 500);
-          return defer.promise;
+          return fakeResponse();
         }
 
-        return ajaxHelper.get(ApiEndpoint.url + "/Mobile/Job/"+$rootScope.user.StaffID,
+        return ajaxHelper.get(ApiEndpoint.url + "/Job/"+$rootScope.user.StaffID,
+          "loadNewJobData");
+      }
+
+      function loadConfirmedJobData() {
+        if(!$rootScope.user || !$rootScope.user.StaffID) {
+          return fakeResponse();
+        }
+
+        return ajaxHelper.get(ApiEndpoint.url + "/Job/"+$rootScope.user.StaffID,
           "loadNewJobData");
       }
 
       function setAvailable(jobId, value) {
-        return ajaxHelper.post(ApiEndpoint.url + "/Mobile/JobAvailability/"+$rootScope.user.StaffID, {
+        return ajaxHelper.post(ApiEndpoint.url + "/JobAvailability/"+$rootScope.user.StaffID, {
           BookID : jobId,
           IsAvailable:value,
           StaffID : $rootScope.user.StaffID
         }, "setAvailable");
+      }
+
+      function fakeResponse() {
+        var defer =$q.defer();
+        $timeout(function() {
+          defer.reject();
+        }, 500);
+        return defer.promise;
       }
 
     }]);

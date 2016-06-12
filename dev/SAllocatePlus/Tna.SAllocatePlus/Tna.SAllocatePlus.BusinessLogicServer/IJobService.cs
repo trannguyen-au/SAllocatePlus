@@ -9,11 +9,9 @@ using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.BusinessLogicServer
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract(Namespace = "http://Tna.SAllocatePlus.BusinessLogicServer")]
     public interface IJobService
     {
-
         [OperationContract]
         List<JobDto> GetJobsByCostCentre(string regionName);
 

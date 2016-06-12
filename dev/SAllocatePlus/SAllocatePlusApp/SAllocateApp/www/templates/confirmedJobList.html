@@ -1,0 +1,14 @@
+<ion-view view-title="Job list">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="job in confirmedJobList">
+        <i class="icon ion-bookmark"></i>
+        <span ng-bind="job.SiteName"></span>
+        <br>
+        <span ng-bind="job.JobDate | date"></span> -
+        <span ng-bind="job.JobTime | time"></span>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

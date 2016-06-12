@@ -9,6 +9,7 @@ using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
 {
+    [Authorize]
     [Route("api/Job")]
     public class JobController : ApiController
     {

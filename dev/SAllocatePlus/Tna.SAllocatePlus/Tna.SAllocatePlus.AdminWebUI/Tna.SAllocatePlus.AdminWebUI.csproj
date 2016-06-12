@@ -120,10 +120,8 @@
   <ItemGroup>
     <Compile Include="ApiControllers\CostCentreController.cs" />
     <Compile Include="ApiControllers\JobController.cs" />
-    <Compile Include="ApiControllers\MobileController.cs" />
     <Compile Include="ApiControllers\RoleController.cs" />
     <Compile Include="ApiControllers\StaffController.cs" />
-    <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -135,7 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\JsonResponseMessage.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ResetPasswordRequestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

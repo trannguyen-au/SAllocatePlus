@@ -26,7 +26,7 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
       }).then(function(modal) {
 
         $rootScope.loginData = {
-          username : 'BB879468',
+          username : 'EL744787',
           password : '123456'
         };
 
@@ -92,11 +92,12 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.confirmedJobs', {
+      url: '/confirmedJobs',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/confirmedJobList.html',
+          controller: 'confirmedJobCtrl'
         }
       }
     })
@@ -120,5 +121,5 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/job');
 });

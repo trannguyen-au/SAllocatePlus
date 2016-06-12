@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Tna.SAllocatePlus.AdminWebUI.Models
+namespace Tna.SAllocatePlus.CommonShared
 {
     public class JsonResponseMessage
     {

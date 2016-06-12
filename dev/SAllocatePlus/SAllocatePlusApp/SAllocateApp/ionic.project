@@ -5,7 +5,7 @@
   "proxies": [
       {
         "path": "/apiproxy",
-        "proxyUrl": "http://localhost:52617/api"
+        "proxyUrl": "http://localhost:53750/api"
       },
       {
         "path": "/apiAwsProxyBase",

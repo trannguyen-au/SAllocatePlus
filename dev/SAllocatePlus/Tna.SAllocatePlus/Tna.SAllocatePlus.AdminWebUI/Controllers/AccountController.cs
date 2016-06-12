@@ -13,7 +13,7 @@ using Tna.SAllocatePlus.CommonShared.Dto;
 
 namespace Tna.SAllocatePlus.AdminWebUI.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class AccountController : Controller
     {
         AccountServiceClient _accountClient;
@@ -25,6 +25,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
             _commonDataService = ServiceFactory.CreateCommonDataServiceClient();
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -45,6 +46,7 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginViewModel vm, string returnUrl = "")
         {
@@ -93,7 +95,6 @@ namespace Tna.SAllocatePlus.AdminWebUI.Controllers
             return View(vm);
         }
 
-        [Authorize]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

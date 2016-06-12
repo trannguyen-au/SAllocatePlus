@@ -14,15 +14,18 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">SAllocate+</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/app/job">
           Job list
         </ion-item>
-        <ion-item menu-close href="#/app/futurelist">
-          Future jobs
+        <ion-item menu-close href="#/app/confirmedJobs">
+          Confirmed jobs
+        </ion-item>
+        <ion-item menu-close ng-click="logout()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>

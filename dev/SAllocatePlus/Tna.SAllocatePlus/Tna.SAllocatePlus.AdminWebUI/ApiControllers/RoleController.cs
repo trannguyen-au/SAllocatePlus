@@ -8,6 +8,7 @@ using Tna.SAllocatePlus.ClientServices;
 
 namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
 {
+    [Authorize]
     public class RoleController : ApiController
     {
         CommonDataServiceClient _commonDataService;

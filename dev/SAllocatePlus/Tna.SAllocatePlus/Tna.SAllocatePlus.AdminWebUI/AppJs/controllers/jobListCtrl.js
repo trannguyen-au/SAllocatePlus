@@ -3,7 +3,10 @@
 
     angular
         .module('tna.sap.controllers')
-    .controller('jobListCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'jobService', 'userService', function (s, $rootScope, $routeParams,$location, jobService, userService) {
+    .controller('jobListCtrl', ['$scope', '$rootScope', '$routeParams',
+            '$location', 'jobService', 'userService',
+        function (s, $rootScope, $routeParams,
+            $location, jobService, userService) {
         $rootScope.AppTitle = "Job list";
 
         s.listFilter = {
@@ -49,10 +52,6 @@
 
             $location.url('/sendEmail/' + s.listFilter.JobCostCentre);
         }
-
         initData();
-
-        
     }]);
-
 })();

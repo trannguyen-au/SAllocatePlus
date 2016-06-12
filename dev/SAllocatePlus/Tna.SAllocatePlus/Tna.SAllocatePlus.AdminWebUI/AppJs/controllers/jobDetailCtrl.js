@@ -49,6 +49,7 @@
         $scope.saveModel = function () {
             jobService.saveJobDetail($scope.model)
             .then(function (result) {
+                alert("Save success");
                 console.log(result);
             }, function (error) {
                 console.log(error);

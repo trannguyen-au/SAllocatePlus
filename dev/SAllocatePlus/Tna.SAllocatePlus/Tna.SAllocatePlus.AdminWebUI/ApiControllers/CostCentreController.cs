@@ -9,6 +9,7 @@ using Tna.SAllocatePlus.ClientServices;
 
 namespace Tna.SAllocatePlus.AdminWebUI.ApiControllers
 {
+    [Authorize]
     [Route("api/CostCentre")]
     public class CostCentreController : ApiController
     {
