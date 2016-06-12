@@ -35,7 +35,7 @@
           return fakeResponse();
         }
 
-        return ajaxHelper.get(ApiEndpoint.url + "/Job/"+$rootScope.user.StaffID,
+        return ajaxHelper.get(ApiEndpoint.url + "/Job/1/"+$rootScope.user.StaffID,
           "loadNewJobData");
       }
 
