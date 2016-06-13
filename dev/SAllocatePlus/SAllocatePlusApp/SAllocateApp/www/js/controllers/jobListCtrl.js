@@ -2,20 +2,24 @@ angular.module('tna.sap.controllers')
   .controller('jobListCtrl', function($scope, $rootScope, $ionicModal, $timeout, userService) {
     $scope.title = "test";
 
-    function loadJobList() { // private method
+    $scope.loadJobList = function() {
       userService.loadNewJobData()
         .then(function(newList) {
           $rootScope.jobList = newList;
         }, function(error) {
           console.log(error);
         });
-    }
+    };
 
-    loadJobList();
+    $scope.doRefresh = function() {
+      $scope.loadJobList();
+    };
+
+    $scope.loadJobList();
 
     // refresh after user login
     $rootScope.$on($rootScope.EVENT_USER_LOGIN, function() {
-      loadJobList();
+      $scope.loadJobList();
     });
 
   });

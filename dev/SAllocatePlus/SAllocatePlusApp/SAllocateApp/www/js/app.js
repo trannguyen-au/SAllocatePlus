@@ -26,7 +26,7 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
       }).then(function(modal) {
 
         $rootScope.loginData = {
-          username : 'EL744787',
+          username : 'SW963158',
           password : '123456'
         };
 
@@ -38,6 +38,7 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
     $rootScope.EVENT_USER_LOGIN = "User.Login";
 
     $rootScope.doLogin = function() {
+      $rootScope.error = null;
       if(empty($rootScope.loginData.username)) {
         alert('Please enter user name');
       }
@@ -54,12 +55,25 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
           $rootScope.$emit($rootScope.EVENT_USER_LOGIN);
 
           console.log(result);
+        }, function(error) {
+          alert('Your account is not valid. Please try again.');
+          $rootScope.error = error;
         });
     };
+
+    $rootScope.logout = function() {
+      $rootScope.user = null;
+      $rootScope.modal.show();
+    }
+
+    $rootScope.handleServerError = function (data, status) {
+      console.log(data);
+    }
   });
 })
-  .constant('ApiEndpoint', {
+  .value('ApiEndpoint', {
     url: 'http://192.168.1.153:8100/apiproxy'
+    //url: 'http://192.168.1.102:1221/api'
     // uncomment below line when deploy / testing on device
     //url: 'http://ec2-52-62-96-249.ap-southeast-2.compute.amazonaws.com/app_dev.php'
   })
@@ -101,6 +115,17 @@ angular.module('starter', ['ionic', 'tna.sap.common','tna.sap.controllers', 'tna
         }
       }
     })
+
+    .state('app.settings', {
+      url: '/settings',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/settings.html',
+          controller: 'settingsCtrl'
+        }
+      }
+    })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

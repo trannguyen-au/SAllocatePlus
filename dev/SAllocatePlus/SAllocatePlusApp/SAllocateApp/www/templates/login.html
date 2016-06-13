@@ -17,7 +17,7 @@
           <input type="password" ng-model="loginData.password">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-positive" type="submit">Log in <i class="icon ion-load-c glyphicon-spin-animate" ng-show="!FindWatcher('validateLogin').loading"></i></button>
         </label>
       </div>
     </form>

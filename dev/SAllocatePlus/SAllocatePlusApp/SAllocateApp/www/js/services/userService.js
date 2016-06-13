@@ -18,7 +18,7 @@
         return ajaxHelper.post(ApiEndpoint.url + "/Login", {
           UserName : username,
           Password:password
-        }, "getCostCentre");
+        }, "validateLogin");
       }
 
       function loadNewJobData() {
@@ -36,7 +36,7 @@
         }
 
         return ajaxHelper.get(ApiEndpoint.url + "/Job/1/"+$rootScope.user.StaffID,
-          "loadNewJobData");
+          "loadConfirmedJobData");
       }
 
       function setAvailable(jobId, value) {

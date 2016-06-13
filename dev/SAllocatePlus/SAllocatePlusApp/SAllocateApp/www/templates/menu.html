@@ -18,11 +18,17 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
+        <ion-item class="item-text-wrap item-divider">
+          Welcome {{user.FirstName}} {{user.SurName}}!
+        </ion-item>
         <ion-item menu-close href="#/app/job">
           Job list
         </ion-item>
         <ion-item menu-close href="#/app/confirmedJobs">
           Confirmed jobs
+        </ion-item>
+        <ion-item menu-close href="#/app/settings">
+          Settings
         </ion-item>
         <ion-item menu-close ng-click="logout()">
           Logout
